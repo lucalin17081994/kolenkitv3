@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @product_sauce.to_s %>,
+  aantal: <%= @product_sauce.quantity %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_product_sauce_path(@product_sauce) %> |
+<%= link_to 'Back', root_path %>

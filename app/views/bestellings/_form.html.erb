@@ -1,0 +1,33 @@
+<%= form_with(model: bestelling, local: true) do |form| %>
+  <% if bestelling.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bestelling.errors.count, "error") %> prohibited this bestelling from being saved:</h2>
+
+      <ul>
+        <% bestelling.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%@cart.product_sauces.each do |c|%>
+    <p><%=c.name%>,
+    aantal: <%=c.quantity%>,
+    subtotaal: €<%=c.price%></p>
+  <%end%>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.text_field :number %>
+  </div>
+  <%= form.hidden_field :cart_id, :value => @cart.id %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

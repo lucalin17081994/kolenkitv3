@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<%@bestelling.cart.product_sauces.each do |c|%>
+    <p><%=c.name%>,
+    aantal: <%=c.quantity%>,
+    subtotaal: €<%=c.price%></p>
+  <%end%>
+
+<p>
+  <strong>Address:</strong>
+  <%= @bestelling.address %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @bestelling.number %>
+</p>
+
+<%= link_to 'Edit', edit_bestelling_path(@bestelling) %> |
+<%= link_to 'Back', root_path %>

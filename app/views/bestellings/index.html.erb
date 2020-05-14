@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Bestellings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cart</th>
+      <th>Address</th>
+      <th>Number</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bestellings.each do |bestelling| %>
+      <tr>
+        <td><%= bestelling.cart_id %></td>
+        <td><%= bestelling.address %></td>
+        <td><%= bestelling.number %></td>
+        <td><%= link_to 'Show', bestelling %></td>
+        <td><%= link_to 'Edit', edit_bestelling_path(bestelling) %></td>
+        <td><%= link_to 'Destroy', bestelling, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bestelling', new_bestelling_path %>
