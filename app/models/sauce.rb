@@ -3,6 +3,10 @@ class Sauce < ApplicationRecord
   has_many :products, :through => :product_sauces
 
   def to_s
-    name
+    if price==0
+      name
+    else
+      name+"(+€"+price.to_s+")"
+    end
   end
 end

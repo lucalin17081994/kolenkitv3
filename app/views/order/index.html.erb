@@ -2,31 +2,34 @@
 
 
 
-<h1>Cart</h1>
-
-<%=render 'cart'%>
 
 
 
 
-  <%= button_to 'Bestellen', new_bestelling_path, method: :get, params:{cart_id: @cart} %>
+<div class="container-lg">
 
-
-<h1>Onze Producten</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Product</th>
-      <th>Sauce</th>
-      <th>Quantity</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-  <%=render 'bestellingsformulier'%>
-  </tbody>
-</table>
-
-<br>
+  
+  <div class="row">
+    <div class="col-sm-8">
+      <h1>Onze Producten</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Sauce</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+        <%=render 'bestellingsformulier'%>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-4">
+      <%=render 'cart'%>
+    </div>
+  </div>
+</div>
 
