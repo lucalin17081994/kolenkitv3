@@ -1,0 +1,20 @@
+<div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+
+
+      <%@cart.product_sauces.each do |c|%>
+        <%= form_with(scope: :product_sauce, local: true) do |form| %>
+          <%=c.to_s%>,
+          aantal: <%=c.quantity%>,
+          prijs: <%=c.price%>
+          <%=form.hidden_field :id, value: c.id%>
+          <%= button_to 'delete',root_path, method: :delete%>
+          <%= button_to 'edit',edit_item_path(c.id), method: :get%>
+
+   
+        
+        <%end%>
+      <%end%>
+
+    </div>
+  </div>
