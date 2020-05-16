@@ -4,5 +4,5 @@ class Bestelling < ApplicationRecord
   validates :number, presence: true
   validates :cart, presence:true
 
-  belongs_to :cart
+  belongs_to :cart, dependent: :destroy
 end

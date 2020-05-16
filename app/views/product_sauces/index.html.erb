@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>ProductSauceID</th>
       <th>ProductID</th>
       <th>Product</th>
       <th>SauceID</th>
@@ -18,6 +19,7 @@
   <tbody>
     <% @product_sauces.each do |product_sauce| %>
       <tr>
+        <td><%= product_sauce.id %></td>
         <td><%= product_sauce.product_id %></td>
         <td><%= product_sauce.product.name %></td>
         <td><%= product_sauce.sauce_id %></td>

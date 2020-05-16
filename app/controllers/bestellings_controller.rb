@@ -33,6 +33,7 @@ class BestellingsController < ApplicationController
 
     respond_to do |format|
       if @bestelling.save
+        session[:cart_id]=nil
         format.html { redirect_to root_path, notice: 'Bestelling was successfully created.' }
         format.json { render :show, status: :created, location: @bestelling }
       else

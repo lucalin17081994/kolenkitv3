@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   root 'order#index'
   post '/', to:'order#add_to_cart'
   delete '/', to: 'order#delete_from_cart'
-  get 'product_sauces/:id/edit', to:'order#edit_item', as: :edit_item
+  patch '/', to:'order#diminish'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
