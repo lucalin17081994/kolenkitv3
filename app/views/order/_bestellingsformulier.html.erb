@@ -1,7 +1,7 @@
 
 <div class="row">
   <% @products.each do |p| %>
-    <%= form_with(scope: :product_sauce, local: true) do |form| %>
+    <%= form_with(scope: :product_sauce, remote:true) do |form| %>
       
         <div class="col-sm-4">
             <div class="card" style="width: 16rem;">
@@ -15,8 +15,7 @@
               <p><%= form.select :sauce_id,options%></p>
               <p><%= form.number_field :quantity , value:1, min: 1%></p>
               
-              <a><%= button_to 'add to cart',root_path , {method: :post, class:"add-to-cart btn btn-danger"}%></a>
-
+              <a><%= form.submit 'add to cart', {method: :post, class:"add-to-cart btn btn-danger"}%></a>
 
             </div>
           </div>

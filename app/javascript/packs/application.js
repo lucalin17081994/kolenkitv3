@@ -17,13 +17,24 @@ require("jquery")
 // const imagePath = (name) => images(name, true)
 
 import "bootstrap";
-import "../stylesheets/application"  // <- Add this line
+import "../stylesheets/application";  // <- Add this line
 
 document.addEventListener("turbolinks:load", () => {
-  $('[data-toggle="tooltip"]').tooltip()
-  $('[data-toggle="popover"]').popover()
-})
-
-$('#staticDiv').on('click', 'yourSelector', function() {
-  //do something
+  $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="popover"]').popover();
 });
+window.jQuery = $;
+window.$ = $;
+// $(document).ready(function() {
+//   var wm=$('#winkelmandje');
+//   $(".add-to-cart").click(function(e) {
+
+
+//     wm[0].innerHTML = ("<%= j (render partial: 'random') %>")
+    
+
+
+//   });
+// });
+
+

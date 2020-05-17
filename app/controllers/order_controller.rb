@@ -2,13 +2,14 @@ class OrderController < ApplicationController
   before_action :set_product_sauce, only: [:show, :edit, :update, :destroy]
   before_action :load_cart, if:@cart
   def index
-    
+    #@cart=Cart.create
     @sauces=Sauce.all
     @products=Product.all
     @product_sauces = ProductSauce.all
   end
   
   def add_to_cart
+    
     @cart||=Cart.create
     if @cart.bestelling
       @cart=Cart.create
@@ -39,7 +40,10 @@ class OrderController < ApplicationController
       end
     end
     @cart.product_sauces<<p
-    redirect_to root_path
+    respond_to do |format|
+
+      format.js {render 'update_cart'}
+    end
   end
 
   def diminish
@@ -61,7 +65,10 @@ class OrderController < ApplicationController
     else
       @cart.product_sauces.delete(p_in_cart)
     end
-    redirect_to root_path
+    respond_to do |format|
+
+      format.js {render 'update_cart'}
+    end
 
   end
 
@@ -71,7 +78,10 @@ class OrderController < ApplicationController
     a=@cart.product_sauces.to_a
     b=ProductSauce.find(id)
     @cart.product_sauces=a-[b]
-    redirect_to root_path
+    respond_to do |format|
+
+      format.js {render 'update_cart'}
+    end
   end
 
   
