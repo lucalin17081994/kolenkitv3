@@ -4,6 +4,12 @@ class Cart < ApplicationRecord
   has_one :bestelling
   
   
-  
+  def price
+    total_price=0
+    product_sauces.each do |p|
+      total_price+=p.price
+    end
+    return total_price
+  end
 
 end

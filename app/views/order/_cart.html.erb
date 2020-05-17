@@ -1,33 +1,59 @@
 
-<h1>Winkelmandje</h1>
-<%if @cart%>
+<%if @cart%>  
+  <h1>Winkelmandje</h1>
   <%@cart.product_sauces.each do |c|%>
-    <%= form_with(scope: :product_sauce, local: true) do |form| %>
-      <%=c.to_s%>,
-      aantal: <%=c.quantity%>,
-      prijs: €<%=c.price%>
-      <%=form.hidden_field :id, value: c.id%>
-      <%= form.hidden_field :product_id , value:c.product.id%>
-      <%= form.hidden_field :sauce_id , value:c.sauce.id%>
-      <%= form.hidden_field :quantity , value:1%>
-      
-      <%= button_to '+',root_path, method: :post%>
+  
+    <div class="row">
+      <div class=col-sm-4>
+          <%=c.to_s%>,
+          aantal: <%=c.quantity%>,
+          prijs: €<%=c.price%>
+      </div>
+      <div class=col-sm-0>
+      <%= form_with(scope: :product_sauce, local: true) do |form| %>
+        <%=form.hidden_field :id, value: c.id%>
+        <%= form.hidden_field :product_id , value:c.product.id%>
+        <%= form.hidden_field :sauce_id , value:c.sauce.id%>
+        <%= form.hidden_field :quantity , value:c.quantity%>
+        <%= button_to root_path, {method: :patch, class:"btn btn-light"} do%>
+          <%= octicon "dash" %>
+        <%end%>
+      <%end%>
+      </div>
 
-    <%end%>
-    <%= form_with(scope: :product_sauce, local: true) do |form| %>
-      <%=form.hidden_field :id, value: c.id%>
-      <%= form.hidden_field :product_id , value:c.product.id%>
-      <%= form.hidden_field :sauce_id , value:c.sauce.id%>
-      <%= form.hidden_field :quantity , value:c.quantity%>
-      <%= button_to '-',root_path, method: :patch%>
-    <%end%>
-    <%= form_with(scope: :product_sauce, local: true) do |form| %>
-      <%=form.hidden_field :id, value: c.id%>
-      <%= form.hidden_field :product_id , value:c.product.id%>
-      <%= form.hidden_field :sauce_id , value:c.sauce.id%>
-      <%= form.hidden_field :quantity , value:1%>
-      <%= button_to 'delete',root_path, method: :delete%>
+      <div class=col-sm-0>
+      <%= form_with(scope: :product_sauce, local: true) do |form| %>
+        
+          <%=form.hidden_field :id, value: c.id%>
+          <%= form.hidden_field :product_id , value:c.product.id%>
+          <%= form.hidden_field :sauce_id , value:c.sauce.id%>
+          <%= form.hidden_field :quantity , value:1%>
+          
+          <%= button_to root_path,  {method: :post, class:"btn btn-light"} do%>
+            <%= octicon "plus" %>
+        <%end%>
+      
+      <%end%>
+      </div>
+      
+      <div class=col-sm-4>
+        <%= form_with(scope: :product_sauce, local: true) do |form| %>
+          <%=form.hidden_field :id, value: c.id%>
+          <%= form.hidden_field :product_id , value:c.product.id%>
+          <%= form.hidden_field :sauce_id , value:c.sauce.id%>
+          <%= form.hidden_field :quantity , value:1%>
+          <%= button_to root_path, {method: :delete,class:"btn btn-danger"}  do%>
+            <%= octicon "trashcan" %>
+            
+
+          <%end%>
+        <%end%>
+      </div>
+    </div>
   <%end%>
-  <%end%>
+
+  <strong>Totaalbedrag: </strong> €<%=@cart.price%>
+  <%= button_to 'Bestellen', new_bestelling_path, method: :get, params:{cart_id: @cart} %>
 <%end%>
-<%= button_to 'Bestellen', new_bestelling_path, method: :get, params:{cart_id: @cart} %>
+
+

@@ -67,7 +67,7 @@ class ProductSaucesController < ApplicationController
     end
   end
   def diminish
-
+    
   end
 
   private

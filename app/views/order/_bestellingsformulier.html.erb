@@ -1,33 +1,28 @@
-<% @products.each do |p| %>
+
+<div class="row">
+  <% @products.each do |p| %>
     <%= form_with(scope: :product_sauce, local: true) do |form| %>
       
-        
-        <tr>
-          <td><div class="field">
-          <%=form.hidden_field :product_id, value: p.id%>
-          <%= p.name %>
-          </div></td>
-          
+        <div class="col-sm-4">
+            <div class="card" style="width: 16rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%= p.name %> €<%= p.price %></h5>
+              <%=form.hidden_field :product_id, value: p.id%>
+              
+              
+              <% options = options_for_select(@sauces.collect{ |p| [p.to_s, p.id] }) %>
+              <p><%= form.select :sauce_id,options%></p>
+              <p><%= form.number_field :quantity , value:1, min: 1%></p>
+              
+              <a><%= button_to 'add to cart',root_path , {method: :post, class:"add-to-cart btn btn-danger"}%></a>
 
-          <td>  <div class="field">
-            <% options = options_for_select(@sauces.collect{ |p| [p.to_s, p.id] }) %>
-            <%= form.select :sauce_id,options%>
+
             </div>
-            </td>
-          <td> <div class="field">
-              <%= form.label :aantal %>
-              <%= form.number_field :quantity , value:1, min: 1%>
-            </div>
-            </td>
-            <td>
-            €<%= p.price %>
-            </td>
-          <td> <div class="actions">
-              <%= button_to 'add to cart',root_path, method: :post%>
-            </div>
-            </td>
-            
-          </tr>
-        <% end %>
+          </div>
+        </div>
       
+    <% end %>
+        
   <%end%>
+</div>
