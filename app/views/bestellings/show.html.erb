@@ -18,7 +18,11 @@
 
   <p>
     <strong>Bezorgen of Ophalen:</strong>
-    <%= @bestelling.isBezorgd %>
+    <%if @bestelling.isBezorgd%>
+          Bezorgen
+        <%else%>
+          Ophalen
+        <%end%>
   </p>
   <p>
     <strong>Adres/Naam:</strong>
