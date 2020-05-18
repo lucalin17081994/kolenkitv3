@@ -17,6 +17,10 @@ class BestellingsController < ApplicationController
 
   # GET /bestellings/new
   def new
+    if @cart.product_sauces.size<1
+      flash[:notice]="winkelmandje kan niet leeg zijn"
+      redirect_to root_path
+    end
     @bestelling = Bestelling.new
   end
 

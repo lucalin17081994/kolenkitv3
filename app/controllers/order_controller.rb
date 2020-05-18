@@ -6,6 +6,7 @@ class OrderController < ApplicationController
     @sauces=Sauce.all
     @products=Product.all
     @product_sauces = ProductSauce.all
+
   end
   
   def add_to_cart
@@ -24,13 +25,7 @@ class OrderController < ApplicationController
       q=q_bestelling+q_in_cart
 
       @cart.product_sauces.delete(p_in_cart)
-      p_in_db= ProductSauce.find_by(product_id:p_id, sauce_id:s_id, quantity:q)
-      if p_in_db
-        p=p_in_db
-      else
-        p=ProductSauce.create(product_id:p_id, sauce_id:s_id, quantity:q)
-      end
-    
+      p=set_or_create_product(p_id,s_id,q)
     else
       p_in_db= ProductSauce.find_by(product_sauce_params)
       if p_in_db
@@ -54,13 +49,7 @@ class OrderController < ApplicationController
     q=q_in_cart-1
     if q>0
       @cart.product_sauces.delete(p_in_cart)
-      p_in_db= ProductSauce.find_by(product_id:p_id, sauce_id:s_id, quantity:q)
-      if p_in_db
-        p=p_in_db
-      else
-        p=ProductSauce.create(product_id:p_id, sauce_id:s_id, quantity:q)
-        
-      end
+      p=set_or_create_product(p_id,s_id,q)
       @cart.product_sauces<<p
     else
       @cart.product_sauces.delete(p_in_cart)
@@ -115,14 +104,33 @@ class OrderController < ApplicationController
       end
     end
   end
+  def set_or_create_product(p_id,s_id,q)
+    p_in_db= ProductSauce.find_by(product_id:p_id, sauce_id:s_id, quantity:q)
+    p=nil
+    if p_in_db
+      p=p_in_db
+    else
+      p=ProductSauce.create(product_id:p_id, sauce_id:s_id, quantity:q)
+    end
+    return p
+
+  end
   def load_cart
     
-    if session[:cart_id]
-      @cart=Cart.find(session[:cart_id])
-      if @cart.bestelling
-        @cart=Cart.create
+    if session[:cart_id]#if session exist
+      if Cart.where(id: session[:cart_id]).size>0#if cart exist
+        @cart=Cart.find(session[:cart_id])#find cart
+        if @cart.bestelling#create new cart if order went through
+          @cart=Cart.create
+        end
+      else 
+        
       end
+    else
+      #if session doesnt exist, set session to nil. carts are created on button click
+      session[:cart_id]=nil
     end
+    
   end
   
 end
