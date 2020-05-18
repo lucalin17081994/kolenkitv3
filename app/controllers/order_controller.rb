@@ -10,8 +10,9 @@ class OrderController < ApplicationController
   end
   
   def add_to_cart
-    
-    @cart||=Cart.create
+    if !@cart
+      @cart=Cart.create
+    end
     if @cart.bestelling
       @cart=Cart.create
     end
