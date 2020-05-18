@@ -36,5 +36,26 @@ window.$ = $;
 
 //   });
 // });
-
+$(function () {
+  var checked=false;
+  var text=$(".heleBestelling").html()
+  $('#bestelling_isBezorgd').change(function () {  
+    $($('label[for="bestelling_address"]')[0]).text("Naam"); 
+    $(".heleBestelling").html(text);
+    if (this.checked ){
+      checked=true;
+      $($('label[for="bestelling_address"]')[0]).text("Adres");
+      $(".heleBestelling").html(text+"bezorg kosten: <div style=\"float:right;\">subtotaal: €2</div><hr>");
+      var bedrag=$("#totaalbedrag").text()
+      $("#totaalbedrag").html(parseFloat(bedrag)+2);
+    }
+    if (!this.checked && checked){
+      checked=false;
+      var bedrag=$("#totaalbedrag").text()
+      $("#totaalbedrag").html(parseFloat(bedrag)-2);
+    }
+    
+    
+  }).change(); //ensure visible state matches initially
+});
 

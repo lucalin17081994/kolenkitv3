@@ -1,8 +1,7 @@
 class ProductSauce < ApplicationRecord
   belongs_to :product
   belongs_to :sauce
-  has_many :carts
-  
+  has_and_belongs_to_many :carts
   def price
     if quantity
       if quantity>0
@@ -16,7 +15,7 @@ class ProductSauce < ApplicationRecord
   def to_s
     
     if sauce.name!="geen"
-      product.name+ " "+sauce.name
+      product.name+ " + "+sauce.name
     else
       product.name
     end

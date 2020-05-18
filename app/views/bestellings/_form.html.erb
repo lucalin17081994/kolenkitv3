@@ -10,24 +10,42 @@
       </ul>
     </div>
   <% end %>
-
-  <%@cart.product_sauces.each do |c|%>
-    <p><%=c.name%>,
-    aantal: <%=c.quantity%>,
-    subtotaal: €<%=c.price%></p>
-  <%end%>
-
+  <div class="heleBestelling">
+    <%@cart.product_sauces.each do |c|%>
+      <p><%=c.to_s%>,
+      aantal: <%=c.quantity%>
+      <span id="itemprice">subtotaal: €<%=c.price%></span></p>
+      <hr>
+    <%end%>
+  </div>
+  
+  <div style="text-align:right;">Totaalbedrag: €<span id="totaalbedrag"><%=@cart.price%></span></div>
+  <hr>
   <div class="field">
+      <%= form.label "laten bezorgen" %>
+      <%= form.check_box :isBezorgd %> <br />
+  </div>
+  <div class="field" id="addressField">
     <%= form.label :address %>
-    <%= form.text_field :address %>
+    <%if current_user%>
+      <%= form.text_field :address , :value => current_user.address%>
+    <%else%>
+      <%= form.text_field :address%>
+    <%end%>
   </div>
+  
 
   <div class="field">
-    <%= form.label :number %>
-    <%= form.text_field :number %>
+    <%if current_user%>
+      Telefoon Nummer <%= form.text_field :number, :value => current_user.number%>
+    <%else%>
+      <%= form.text_field :address%>
+    <%end%>
   </div>
+
+  
   <%= form.hidden_field :cart_id, :value => @cart.id %>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Bestellen'%>
   </div>
 <% end %>

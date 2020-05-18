@@ -22,6 +22,7 @@ class BestellingsController < ApplicationController
       redirect_to root_path
     end
     @bestelling = Bestelling.new
+    
   end
 
   # GET /bestellings/1/edit
@@ -34,11 +35,12 @@ class BestellingsController < ApplicationController
     id=params[:bestelling][:cart_id]
     @cart=Cart.find(id)
     @bestelling = Bestelling.new(bestelling_params)
-
+    if current_user
+      @bestelling.user=current_user
+    end
     respond_to do |format|
+      
       if @bestelling.save
-        @cart.user=current_user
-        @cart.save
         session[:cart_id]=nil
         format.html { redirect_to root_path, notice: 'Bestelling was successfully created.' }
         format.json { render :show, status: :created, location: @bestelling }
@@ -81,7 +83,7 @@ class BestellingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bestelling_params
-      params.require(:bestelling).permit(:cart_id, :address, :number)
+      params.require(:bestelling).permit(:cart_id, :address, :number, :isBezorgd)
     end
     def load_cart
       id=params[:cart_id]

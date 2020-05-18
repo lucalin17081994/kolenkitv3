@@ -1,20 +1,35 @@
-<p id="notice"><%= notice %></p>
 
-<%@bestelling.cart.product_sauces.each do |c|%>
-    <p><%=c.name%>,
-    aantal: <%=c.quantity%>,
-    subtotaal: €<%=c.price%></p>
+<div class="card mx-auto"style="width: 960px;">
+  <p id="notice"><%= notice %></p>
+
+  <%@bestelling.cart.product_sauces.each do |c|%>
+      <p><%=c.to_s%>,
+      aantal: <%=c.quantity%>
+      <span>subtotaal: €<%=c.price%></span></p>
+      <hr>
+      
   <%end%>
+  <%if @bestelling.isBezorgd %>
+  Bezorgkosten: €2
+  <hr>
+        <div style="text-align:right;">Totaalbedrag: €<span><%=@bestelling.total_price%></span></div>
+      <%end%>
+  
 
-<p>
-  <strong>Address:</strong>
-  <%= @bestelling.address %>
-</p>
+  <p>
+    <strong>Bezorgen of Ophalen:</strong>
+    <%= @bestelling.isBezorgd %>
+  </p>
+  <p>
+    <strong>Adres/Naam:</strong>
+    <%= @bestelling.address %>
+  </p>
 
-<p>
-  <strong>Number:</strong>
-  <%= @bestelling.number %>
-</p>
+  <p>
+    <strong>Number:</strong>
+    <%= @bestelling.number %>
+  </p>
 
-<%= link_to 'Edit', edit_bestelling_path(@bestelling) %> |
-<%= link_to 'Back', bestellings_path %>
+  <%= link_to 'Back', bestellings_path %>
+
+</div>

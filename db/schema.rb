@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_18_143224) do
+ActiveRecord::Schema.define(version: 2020_05_18_194220) do
 
   create_table "bestellings", force: :cascade do |t|
     t.integer "cart_id", null: false
@@ -18,11 +18,21 @@ ActiveRecord::Schema.define(version: 2020_05_18_143224) do
     t.string "number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "isBezorgd"
+    t.decimal "price"
+    t.integer "user_id"
     t.index ["cart_id"], name: "index_bestellings_on_cart_id"
   end
 
 # Could not dump table "carts" because of following StandardError
-#   Unknown type 'array' for column 'arr'
+#   Unknown type '' for column 'arr'
+
+  create_table "carts_product_sauces", id: false, force: :cascade do |t|
+    t.integer "product_sauce_id", null: false
+    t.integer "cart_id", null: false
+    t.index ["cart_id"], name: "index_carts_product_sauces_on_cart_id"
+    t.index ["product_sauce_id"], name: "index_carts_product_sauces_on_product_sauce_id"
+  end
 
   create_table "full_orders", force: :cascade do |t|
     t.integer "order_id", null: false
@@ -68,7 +78,9 @@ ActiveRecord::Schema.define(version: 2020_05_18_143224) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
-    t.integer "cart_id"
+    t.integer "bestelling_id"
+    t.string "address"
+    t.string "number"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

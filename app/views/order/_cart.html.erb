@@ -1,63 +1,63 @@
 
 <div class="card sticky-top"id="winkelmandje" href="#">
-<h1>Winkelmandje</h1>
-  <%if @cart%>  
-    
-    <%@cart.product_sauces.each do |c|%>
-    
-      <div class="row">
-        <div class=col-sm-4>
-            <%=c.to_s%>,
-            aantal: <%=c.quantity%>,
-            prijs: €<%=c.price%>
-        </div>
-        <div class=col-sm-0>
-        <%= form_with(scope: :product_sauce, remote: true) do |form| %>
-          <%=form.hidden_field :id, value: c.id%>
-          <%= form.hidden_field :product_id , value:c.product.id%>
-          <%= form.hidden_field :sauce_id , value:c.sauce.id%>
-          <%= form.hidden_field :quantity , value:c.quantity%>
-          <%= button_to root_path, {method: :patch, class:"btn btn-light"} do%>
-            <%= octicon "dash" %>
-          <%end%>
-        <%end%>
-        </div>
-
-        <div class=col-sm-0>
-        <%= form_with(scope: :product_sauce, remote: true) do |form| %>
-          
-            <%=form.hidden_field :id, value: c.id%>
-            <%= form.hidden_field :product_id , value:c.product.id%>
-            <%= form.hidden_field :sauce_id , value:c.sauce.id%>
-            <%= form.hidden_field :quantity , value:1%>
-            
-            <%= button_to root_path,  {method: :post, class:"btn btn-light"} do%>
-              <%= octicon "plus" %>
-          <%end%>
+  <div class="card-body">
+    <h1>Winkelmandje</h1>
+      <%if @cart%>  
         
-        <%end%>
-        </div>
+        <%@cart.product_sauces.each do |c|%>
         
-        <div class=col-sm-4>
-          <%= form_with(scope: :product_sauce, remote: true) do |form| %>
-            <%=form.hidden_field :id, value: c.id%>
-            <%= form.hidden_field :product_id , value:c.product.id%>
-            <%= form.hidden_field :sauce_id , value:c.sauce.id%>
-            <%= form.hidden_field :quantity , value:1%>
-            <%= button_to root_path, {method: :delete,class:"btn btn-danger"}  do%>
-              <%= octicon "trashcan" %>
-              
-
+          <div class="row">
+            <div class=col-sm-4>
+                <%=c.to_s%>,
+                aantal: <%=c.quantity%>,
+                prijs: €<%=c.price%>
+            </div>
+            <div class=col-sm-0>
+            <%= form_with(scope: :product_sauce, remote: true) do |form| %>
+              <%=form.hidden_field :id, value: c.id%>
+              <%= form.hidden_field :product_id , value:c.product.id%>
+              <%= form.hidden_field :sauce_id , value:c.sauce.id%>
+              <%= form.hidden_field :quantity , value:c.quantity%>
+              <%= button_to root_path, {method: :patch, class:"btn btn-light"} do%>
+                <%= octicon "dash" %>
+              <%end%>
             <%end%>
-          <%end%>
-        </div>
-      </div>
-    <%end%>
+            </div>
 
-    <strong>Totaalbedrag: </strong> €<%=@cart.price%>
-    
-  <%end%>
- 
-  <%= button_to 'Bestellen', new_bestelling_path, method: :get, params:{cart_id: @cart} %>
+            <div class=col-sm-0>
+            <%= form_with(scope: :product_sauce, remote: true) do |form| %>
+              
+                <%=form.hidden_field :id, value: c.id%>
+                <%= form.hidden_field :product_id , value:c.product.id%>
+                <%= form.hidden_field :sauce_id , value:c.sauce.id%>
+                <%= form.hidden_field :quantity , value:1%>
+                
+                <%= button_to root_path,  {method: :post, class:"btn btn-light"} do%>
+                  <%= octicon "plus" %>
+              <%end%>
+            
+            <%end%>
+            </div>
+            
+            <div class=col-sm-4>
+              <%= form_with(scope: :product_sauce, remote: true) do |form| %>
+                <%=form.hidden_field :id, value: c.id%>
+                <%= form.hidden_field :product_id , value:c.product.id%>
+                <%= form.hidden_field :sauce_id , value:c.sauce.id%>
+                <%= form.hidden_field :quantity , value:1%>
+                <%= button_to root_path, {method: :delete,class:"btn btn-danger"}  do%>
+                  <%= octicon "trashcan" %>
+                  
 
+                <%end%>
+              <%end%>
+            </div>
+          </div>
+        <%end%>
+
+        <strong>Totaalbedrag: </strong> €<%=@cart.price%>
+        
+      <%end%>
+    <%= button_to 'Bestellen', new_bestelling_path, method: :get, params:{cart_id: @cart} %>
+  </div>
 </div>

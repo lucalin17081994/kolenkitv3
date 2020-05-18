@@ -17,17 +17,19 @@ class OrderController < ApplicationController
       @cart=Cart.create
     end
     session[:cart_id]=@cart.id
-    if check_in_cart(@cart, product_sauce_params)
+    if check_in_cart(@cart, product_sauce_params) #if in cart
       p_in_cart=get_from_cart(@cart, product_sauce_params)
       p_id= product_sauce_params[:product_id].to_i
       s_id=product_sauce_params[:sauce_id].to_i
       q_bestelling=product_sauce_params[:quantity].to_i
       q_in_cart=p_in_cart.quantity
       q=q_bestelling+q_in_cart
-
-      @cart.product_sauces.delete(p_in_cart)
+      
+      
+      #@cart.product_sauces.delete(ProductSauce.find(p_in_cart.id))
+      @cart.product_sauces=@cart.product_sauces.reject{ |p| p.product_id==p_in_cart.product_id && p.sauce_id==p_in_cart.sauce_id }
       p=set_or_create_product(p_id,s_id,q)
-    else
+    else #if not in cart
       p_in_db= ProductSauce.find_by(product_sauce_params)
       if p_in_db
         p=p_in_db
@@ -49,11 +51,12 @@ class OrderController < ApplicationController
     q_in_cart=p_in_cart.quantity
     q=q_in_cart-1
     if q>0
-      @cart.product_sauces.delete(p_in_cart)
+      @cart.product_sauces=@cart.product_sauces.reject!{ |p| p.product_id==p_in_cart.product_id && p.sauce_id==p_in_cart.sauce_id }
       p=set_or_create_product(p_id,s_id,q)
       @cart.product_sauces<<p
     else
-      @cart.product_sauces.delete(p_in_cart)
+      @cart.product_sauces=@cart.product_sauces.reject{ |p| p.product_id==p_in_cart.product_id && p.sauce_id==p_in_cart.sauce_id }
+
     end
     respond_to do |format|
 
@@ -65,9 +68,9 @@ class OrderController < ApplicationController
   def delete_from_cart
     
     id=params[:product_sauce][:id].to_i
-    a=@cart.product_sauces.to_a
-    b=ProductSauce.find(id)
-    @cart.product_sauces=a-[b]
+    
+    @cart.product_sauces=@cart.product_sauces.reject{ |p| p.id==id }
+
     respond_to do |format|
 
       format.js {render 'update_cart'}
