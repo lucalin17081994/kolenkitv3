@@ -25,7 +25,11 @@
         
         <td><%= bestelling.number %></td>
         <td>€<%= bestelling.total_price %></td>
-        <td><%= bestelling.isBezorgd %></td>
+        <%if bestelling.isBezorgd%>
+          <td>Bezorgen</td>
+        <%else%>
+          <td>Ophalen</td>
+        <%end%>
         <td><%= bestelling.address %></td>
         <td><%= link_to 'Show', bestelling %></td>
         <td><%= link_to 'Edit', edit_bestelling_path(bestelling) %></td>
