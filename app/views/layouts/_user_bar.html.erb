@@ -6,16 +6,16 @@
         <a class="nav-link" href=<%=user_session_path%>>Log in <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-      <a class="nav-link" href=<%=new_user_registration_path%>>Sign up <span class="sr-only"></span></a>
-    </li>
-      <%end%>
+        <a class="nav-link" href=<%=new_user_registration_path%>>Sign up <span class="sr-only"></span></a>
+      </li>
+    <%end%>
 
     
     <%if user_signed_in?%>
       <%if current_user.admin?%>
         <li class="nav-item">
-          <a class="nav-link"><strong>Ingelogd als Admin</strong></a>
-          </li>
+          <a class="nav-link" <strong>Ingelogd als Admin</strong></a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" <%=link_to 'Bestellingen', bestellings_path %></a>
         </li>
@@ -35,8 +35,8 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" <%=link_to 'Log out', destroy_user_session_path, method: :delete %></a>
-
       </li>
+      
 
     <%end%>
 
