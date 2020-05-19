@@ -14,17 +14,33 @@
  */
 
 
-body {
+// body {
+//   background: {
+//     attachment:fixed;
+//     repeat:no-repeat;
+
+//     position:  right;
+//     image: asset_url("kolenkitlogo.jpeg");
+      
+      
+//   }
+// }
+.container-fluid{
   background: {
-    attachment:fixed;
+    position:fixed;
     repeat:no-repeat;
-    size:100%;
-    position: center;
-    image: asset_url("kolenkitbuiten.jpeg");
-      
-      
+    image: asset_url("kolenkitlogo.jpeg");
+    size:50%;
+    position: right 20%;
   }
 }
+img{
+  border:10px solid #000;
+  border-radius: 4px;
+  width:100%;
+  
+}
+
 body .card{
   
   style{

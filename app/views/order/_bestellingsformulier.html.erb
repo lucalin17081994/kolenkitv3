@@ -3,7 +3,8 @@
   <div class="col">
     <%@categories.each do |c|%>
     
-    <p><div class="category-name"><h1><%=c.name.capitalize%></h1></div></p>
+    <p><div class="category-name" id=<%=c.name.capitalize%>><h1><%=c.name.capitalize%></h1></div></p>
+    <div class=category_image><img src="assets/<%=c.name.capitalize%>.jpg"></div>
     
     <% c.products.each do |p| %>
       <%= form_with(scope: :product_sauce, remote:true) do |form| %>
