@@ -16,6 +16,12 @@
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
+  <div class="field">
+    
+    <% options = options_for_select(@categories.collect{ |p| [p.name, p.id] }) %>
+    <%=form.label "Category"%>
+    <%= form.select :category_id,options%>
+  </div>
 
   <div class="field">
     <%= form.label :price %>

@@ -1,5 +1,5 @@
 
-<div class="card sticky-top"id="winkelmandje" href="#">
+<div class="ml-auto card sticky-top"id="winkelmandje" href="#">
   <div class="card-body">
     <h1>Winkelmandje</h1>
       <%if @cart%>  
@@ -7,7 +7,7 @@
         <%@cart.product_sauces.each do |c|%>
         
           <div class="row">
-            <div class=col-sm-4>
+            <div class=col-sm-6>
                 <%=c.to_s%>,
                 aantal: <%=c.quantity%>,
                 prijs: €<%=c.price%>

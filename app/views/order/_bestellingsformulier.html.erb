@@ -1,29 +1,35 @@
 
 <div class="row">
-  <% @products.each do |p| %>
-    <%= form_with(scope: :product_sauce, remote:true) do |form| %>
-      
-        <div class="col-sm-4">
-            <div class="card" style="width: 40rem;background-color:#F5F5F5;">
-            <img src="" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"><%= p.name %> €<%= p.price %></h5>
-              <%=form.hidden_field :product_id, value: p.id%>
+  <div class="col">
+    <%@categories.each do |c|%>
+    
+    <p><div class="category-name"><h1><%=c.name.capitalize%></h1></div></p>
+    
+    <% c.products.each do |p| %>
+      <%= form_with(scope: :product_sauce, remote:true) do |form| %>
+              <div class="card" style="background-color:#F5F5F5;">
               
-              
-              <% options = options_for_select(@sauces.collect{ |p| [p.to_s, p.id] }) %>
-              <p><%= form.select :sauce_id,options%></p>
-              <p><%= form.number_field :quantity , value:1, min: 1%></p>
-              <p><%=form.label 'Descriptie:'%></p>
-              <p><%=p.description%></p>
-              
-              <a><%= form.submit 'add to cart', {method: :post, class:"add-to-cart btn btn-danger"}%></a>
+              <div class="card-body">
+                <h5 class="card-title"><%= p.name %> €<%= p.price %></h5>
+                <%=form.hidden_field :product_id, value: p.id%>
+                
+                <%if c.hasSauce%>
+                  <% options = options_for_select(@sauces.collect{ |p| [p.to_s, p.id] }) %>
+                  <p><%= form.select :sauce_id,options%></p>
+                <%end%>
+                <p><%= form.number_field :quantity , value:1, min: 1%></p>
+                <p><%=form.label 'Descriptie:'%></p>
+                <p><%=p.description%></p>
+                
+                <a><%= form.submit 'add to cart', {method: :post, class:"add-to-cart btn btn-danger"}%></a>
 
+              </div>
             </div>
-          </div>
-        </div>
-      
-    <% end %>
+          
         
+      <% end %>
+      <br>
+    <%end%>
   <%end%>
+  </div>
 </div>

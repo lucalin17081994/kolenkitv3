@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_category
   before_action :require_admin
   # GET /products
   # GET /products.json
@@ -19,6 +20,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    
   end
 
   # POST /products
@@ -66,9 +68,12 @@ class ProductsController < ApplicationController
     def set_product
       @product = Product.find(params[:id])
     end
+    def set_category
+      @categories=Category.all
+    end
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :price,:description)
+      params.require(:product).permit(:name, :price,:description,:category_id)
     end
 end

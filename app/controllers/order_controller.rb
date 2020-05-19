@@ -1,5 +1,6 @@
 class OrderController < ApplicationController
   before_action :set_product_sauce, only: [:show, :edit, :update, :destroy]
+  before_action :set_categories, only: [:index]
   before_action :load_cart, if:@cart
   def index
     #@cart=Cart.create
@@ -82,6 +83,9 @@ class OrderController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_product_sauce
     @product_sauce = ProductSauce.find(params[:id])
+  end
+  def set_categories
+    @categories = Category.all
   end
 
   # Only allow a list of trusted parameters through.
