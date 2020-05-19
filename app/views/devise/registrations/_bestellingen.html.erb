@@ -1,4 +1,4 @@
-<div class="card">
+
 
 <p id="notice"><%= notice %></p>
 
@@ -19,7 +19,7 @@
     </thead>
 
     <tbody>
-      <% @bestellings.each do |bestelling| %>
+      <% current_user.bestellings.each do |bestelling| %>
         <tr>
           <td><%= bestelling.id %></td>
           
@@ -42,4 +42,3 @@
   <br>
 
   <%= link_to 'Bestellingspagina', root_path %>
-</div>

@@ -1,14 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
 
-<p>
-  <strong>Name:</strong>
-  <%= @sauce.name %>
-</p>
+  <div class="card-body">
 
-<p>
-  <strong>Price:</strong>
-  <%= @sauce.price %>
-</p>
+    <p>
+      <strong>Name:</strong>
+      <%= @sauce.name %>
+    </p>
 
-<%= link_to 'Edit', edit_sauce_path(@sauce) %> |
-<%= link_to 'Back', sauces_path %>
+    <p>
+      <strong>Price:</strong>
+      <%= @sauce.price %>
+    </p>
+
+    <%= link_to 'Edit', edit_sauce_path(@sauce) %> |
+    <%= link_to 'Back', sauces_path %>
+  </div>
+</div>

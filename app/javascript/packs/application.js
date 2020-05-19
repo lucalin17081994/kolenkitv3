@@ -37,6 +37,7 @@ window.$ = $;
 //   });
 // });
 $(function () {
+  
   var checked=false;
   var text=$(".heleBestelling").html()
   $('#bestelling_isBezorgd').change(function () {  
@@ -44,6 +45,9 @@ $(function () {
     $(".heleBestelling").html(text);
     if (this.checked ){
       checked=true;
+      $.get('/current_user', function(result){
+        $($('#bestelling_address')[0]).val(result.address);
+      });
       $($('label[for="bestelling_address"]')[0]).text("Adres");
       $(".heleBestelling").html(text+"bezorg kosten: <div style=\"float:right;\">subtotaal: €2</div><hr>");
       var bedrag=$("#totaalbedrag").text()
@@ -51,6 +55,10 @@ $(function () {
     }
     if (!this.checked && checked){
       checked=false;
+      $.get('/current_user', function(result){
+        $($('#bestelling_address')[0]).val(result.name);
+      });
+      
       var bedrag=$("#totaalbedrag").text()
       $("#totaalbedrag").html(parseFloat(bedrag)-2);
     }
