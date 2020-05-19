@@ -3,6 +3,20 @@
   <a class="navbar-brand" href=<%=root_path%>>
     <%= octicon("home", :height => 64) %>
   </a>
+  
+    <%if current_page?('/')%>
+      <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Ga naar
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <%@categories.each do |c|%>
+          <a class="dropdown-item" href="#<%=c.name.capitalize%>"><%=c.name%></a>
+          
+      <%end%>
+    <%end%>
+  </div>
+</div>
   <button class="navbar-toggler mr-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
