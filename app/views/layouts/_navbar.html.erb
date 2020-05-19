@@ -3,18 +3,15 @@
   <a class="navbar-brand" href=<%=root_path%>>
     <%= octicon("home", :height => 64) %>
   </a>
-
-
-
-  
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler mr-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  
-  
-<%=render 'layouts/user_bar'%>
+  <%=render 'layouts/user_bar'%>
 
-<button class="btn" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
-      aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><%= octicon "credit-card" %></button>
+  
+  <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle cart">
+    <%= octicon "credit-card" %>
+  </button>
+    
 
 </nav>
