@@ -4,7 +4,7 @@
     <%@categories.each do |c|%>
     
     <p><div class="category-name" id=<%=c.name.capitalize%>><h1><%=c.name.capitalize%></h1></div></p>
-    <div class=category_image><img src="assets/<%=c.name.capitalize%>.jpg"></div>
+    <div class=category_image><img src=<%= asset_path("/assets/"+c.name.capitalize+".jpg") %>></div>
     
     <% c.products.each do |p| %>
       <%= form_with(scope: :product_sauce, remote:true) do |form| %>

@@ -51,14 +51,15 @@ class OrderController < ApplicationController
     s_id=product_sauce_params[:sauce_id].to_i
     q_in_cart=p_in_cart.quantity
     q=q_in_cart-1
-    if q>0
-      @cart.product_sauces=@cart.product_sauces.reject!{ |p| p.product_id==p_in_cart.product_id && p.sauce_id==p_in_cart.sauce_id }
+    if q_in_cart>1
+      @cart.product_sauces=@cart.product_sauces.reject{ |p| p.product_id==p_in_cart.product_id && p.sauce_id==p_in_cart.sauce_id }
       p=set_or_create_product(p_id,s_id,q)
       @cart.product_sauces<<p
     else
       @cart.product_sauces=@cart.product_sauces.reject{ |p| p.product_id==p_in_cart.product_id && p.sauce_id==p_in_cart.sauce_id }
 
     end
+    
     respond_to do |format|
 
       format.js {render 'update_cart'}
