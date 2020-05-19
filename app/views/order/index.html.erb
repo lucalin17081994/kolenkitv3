@@ -10,16 +10,21 @@
 
   
   <div class="row">
-    <div class="col-sm-5">
-      <div class="card">
+    <div class="col-xl-8 col-sm-4 col-lg-6">
+    
+      <div class="card index-pagina-cards">
         <div class="card-body">
           <h1>Onze Producten</h1>
             <%=render 'bestellingsformulier'%>
         </div>
       </div>
     </div>
-      <div class="col-sm-4">
-        <%=render 'cart'%>
+      <div class="col-xl-4 col-sm-8 col-lg-6">
+        <div class= "container sticky-top">
+          <a href=<%=root_path%>><img id="logo" src=<%= asset_path("kolenkitlogo.jpg")%> ></a>
+          <hr>
+          <%=render 'cart'%>
+        </div>
     </div>
   </div>
 </div>

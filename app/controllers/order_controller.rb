@@ -129,11 +129,10 @@ class OrderController < ApplicationController
     if session[:cart_id]#if session exist
       if Cart.where(id: session[:cart_id]).size>0#if cart exist
         @cart=Cart.find(session[:cart_id])#find cart
+        
         if @cart.bestelling#create new cart if order went through
           @cart=Cart.create
         end
-      else 
-        
       end
     else
       #if session doesnt exist, set session to nil. carts are created on button click
