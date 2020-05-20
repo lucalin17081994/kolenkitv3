@@ -1,39 +1,54 @@
 
+
 <div class="card mx-auto"style="width: 960px;">
   <p id="notice"><%= notice %></p>
+  <h1 class="card-title">Samenvatting van uw bestelling:</h1>
+  <h2 class="card-body">
+    <%@bestelling.cart.product_sauces.each do |c|%>
 
-  <%@bestelling.cart.product_sauces.each do |c|%>
-      <p><%=c.to_s%>,
-      aantal: <%=c.quantity%>
-      <span>subtotaal: €<%=c.price%></span></p>
-      <hr>
-      
-  <%end%>
-  <%if @bestelling.isBezorgd %>
-  Bezorgkosten: €2
-  <hr>
-        <div style="text-align:right;">Totaalbedrag: €<span><%=@bestelling.total_price%></span></div>
+        <div class="row">
+          <div class="col-md-6">
+            <%=c.quantity.to_s+" "+c.to_s%>
+          </div>
+          
+          <div class="col-md-6"style="text-align:right;">
+            <span>subtotaal: €<%=c.price%></span>
+          </div>
+        </div>
+          
+          
       <%end%>
-  
+      <%if @bestelling.isBezorgd %>
+        <div class="col-md-4 ml-auto">Bezorgkosten: €2</div>
+      <%end%>
+      <hr>
+      <div style="text-align:right;">Totaalbedrag: €<span><%=@bestelling.total_price%></span></div>
+      <hr>
+      <p>
+        <strong>Bezorgen of Ophalen:</strong>
+        <%if @bestelling.isBezorgd%>
+              Bezorgen
+            <%else%>
+              Ophalen
+            <%end%>
+      </p>
+      
 
-  <p>
-    <strong>Bezorgen of Ophalen:</strong>
-    <%if @bestelling.isBezorgd%>
-          Bezorgen
-        <%else%>
-          Ophalen
-        <%end%>
-  </p>
-  <p>
-    <strong>Adres/Naam:</strong>
-    <%= @bestelling.address %>
-  </p>
+      <%if @bestelling.isBezorgd%>
+        <strong>Bezorgadres:</strong>
+        <%= @bestelling.address %>
+      <%else%>
+        <strong>Onder de naam:</strong>
+        <%=@bestelling.address%>
+      <%end%>
 
-  <p>
-    <strong>Number:</strong>
-    <%= @bestelling.number %>
-  </p>
+      <p>
+        <strong>Uw telefoonnummer:</strong>
+        <%= @bestelling.number %>
+      </p>
+    </h2>
+      
 
-  <%= link_to 'Back', bestellings_path %>
+  <%= link_to 'Back', root_path %>
 
 </div>

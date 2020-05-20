@@ -1,14 +1,7 @@
 <a data-toggle="collapse" href=#collapse<%=bestelling.id%> style="color: black; text-decoration: none;" aria-expanded="true" aria-controls="<%=bestelling.id%>">
   <h2 class="card-title">
     <strong><%= bestelling.id %></strong>
-    
-    <%= bestelling.number %>
-    €<%= bestelling.total_price %>
-    <%if bestelling.isBezorgd%>
-      Bezorgen
-    <%else%>
-      Ophalen
-    <%end%>
+   
     <a class="float-right"><%= bestelling.address %></a>
   </h2>
 </a>
@@ -18,13 +11,11 @@
   <h2 >
     <%bestelling.cart.product_sauces.each do |c|%>
       <div class="row">
-        <div class="col-md-4">
-          <%=c.to_s%>
+        <div class="col-md-6">
+          <%=c.quantity.to_s+" "+ c.to_s%>
         </div>
-        <div class="col-md-4">
-          aantal: <%=c.quantity%>
-        </div>
-        <div class="col-md-4">
+        
+        <div class="col-md-6"style="text-align:right;">
           <span>subtotaal: €<%=c.price%></span>
         </div>
       </div>
@@ -53,7 +44,7 @@
       <strong>Number:</strong>
       <%= bestelling.number %>
     </p>
-    
+    <%=link_to 'Show', bestelling%>
     <%= form_with(model: bestelling, local: true) do |form| %>
       <%= form.hidden_field :done, :value => !bestelling.done? %>
       <div class="actions float-right">

@@ -7,7 +7,7 @@ class OrderController < ApplicationController
     @sauces=Sauce.all
     @products=Product.all
     @product_sauces = ProductSauce.all
-
+    
   end
   
   def add_to_cart

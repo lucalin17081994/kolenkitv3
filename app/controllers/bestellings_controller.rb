@@ -43,8 +43,14 @@ class BestellingsController < ApplicationController
       
       if @bestelling.save
         session[:cart_id]=nil
-        format.html { redirect_to root_path, notice: 'Bestelling was successfully created.' }
-        format.json { render :show, status: :created, location: @bestelling }
+
+        if @bestelling.isBezorgd
+          format.html { redirect_to @bestelling, notice: 'Hartelijk dank voor uw bestelling.' }
+          format.json { render :show, status: :created, location: @bestelling }
+        else
+          format.html { redirect_to @bestelling, notice: 'Hartelijk dank voor uw bestelling.' }
+          format.json { render :show, status: :created, location: @bestelling }
+        end
       else
         format.html { render :new }
         format.json { render json: @bestelling.errors, status: :unprocessable_entity }
