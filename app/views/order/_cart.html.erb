@@ -55,9 +55,10 @@
           <hr>
         <%end%>
         <strong>Totaalbedrag: </strong> € <%='%.2f' % @cart.price%>
-      <%end%>
-      <div class="float-right">
+        <div class="float-right">
         <%= button_to 'Bestellen', new_bestelling_path, method: :get, params:{cart_id: @cart} %>
       </div>
+      <%end%>
+      
   </div>
 </div>

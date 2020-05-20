@@ -34,6 +34,13 @@
 //     position: right 20%;
 //   }
 // }
+body{
+  background: {
+    color: #B22222 !important; /* For browsers that do not support gradients */
+    image: linear-gradient(to right, 	#696969	 , #708090		) !important;
+    
+  }
+}
 .card-block{
   font-size:large;
 }
@@ -48,12 +55,10 @@ img{
   object-fit: cover;
   
 }
-#cart-div .card{
-  border:none;
 
-}
 #cart-div{
-  margin-left:50%;
+  position:right;
+  
 
 }
 body .card{
@@ -84,8 +89,8 @@ body .card{
 .index-pagina-cards{
   
   background: {
-    color: whitesmoke !important; /* For browsers that do not support gradients */
-    image: linear-gradient(to right, 	whitesmoke , white	) !important;
+    color: #B22222 !important; /* For browsers that do not support gradients */
+    image: linear-gradient(to right, 	#C0C0C0	 , white	) !important;
     
   }
   color: black;
@@ -102,7 +107,7 @@ body .card{
   font-family: 'Source Sans Pro', sans-serif;
   background: {
     color: whitesmoke !important; /* For browsers that do not support gradients */
-    image: linear-gradient(to right, 	whitesmoke , white	) !important;
+    image: linear-gradient(to right, 	#C0C0C0	 , #DCDCDC	) !important;
     
   }
 }
@@ -110,9 +115,9 @@ body .card{
   line-height: 0;
 }
 
+
 #cart-div{
   margin-top:100px;
-  border:none;
 }
 
 
