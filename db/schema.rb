@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_19_125356) do
+ActiveRecord::Schema.define(version: 2020_05_20_122618) do
 
   create_table "bestellings", force: :cascade do |t|
     t.integer "cart_id", null: false
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_05_19_125356) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "cart_id"
     t.integer "quantity"
+    t.string "flavor"
     t.index ["product_id"], name: "index_product_sauces_on_product_id"
     t.index ["sauce_id"], name: "index_product_sauces_on_sauce_id"
   end

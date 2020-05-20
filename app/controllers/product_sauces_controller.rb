@@ -66,9 +66,7 @@ class ProductSaucesController < ApplicationController
       format.json { head :no_content }
     end
   end
-  def diminish
-    
-  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -78,6 +76,6 @@ class ProductSaucesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_sauce_params
-      params.require(:product_sauce).permit(:product_id, :sauce_id, :quantity)
+      params.require(:product_sauce).permit(:product_id, :sauce_id, :quantity, :flavor)
     end
 end

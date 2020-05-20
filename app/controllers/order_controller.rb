@@ -20,16 +20,19 @@ class OrderController < ApplicationController
     session[:cart_id]=@cart.id
     if check_in_cart(@cart, product_sauce_params) #if in cart
       p_in_cart=get_from_cart(@cart, product_sauce_params)
+      
       p_id= product_sauce_params[:product_id].to_i
       s_id=product_sauce_params[:sauce_id].to_i
+      f=product_sauce_params[:flavor]
+      
       q_bestelling=product_sauce_params[:quantity].to_i
       q_in_cart=p_in_cart.quantity
       q=q_bestelling+q_in_cart
       
       
       #@cart.product_sauces.delete(ProductSauce.find(p_in_cart.id))
-      @cart.product_sauces=@cart.product_sauces.reject{ |p| p.product_id==p_in_cart.product_id && p.sauce_id==p_in_cart.sauce_id }
-      p=set_or_create_product(p_id,s_id,q)
+      @cart.product_sauces=@cart.product_sauces.reject{ |p| p.product_id==p_in_cart.product_id && p.sauce_id==p_in_cart.sauce_id && p.flavor==p_in_cart.flavor}
+      p=set_or_create_product(p_id,s_id,q,f)
     else #if not in cart
       p_in_db= ProductSauce.find_by(product_sauce_params)
       if p_in_db
@@ -49,14 +52,15 @@ class OrderController < ApplicationController
     p_in_cart=get_from_cart(@cart, product_sauce_params)
     p_id= product_sauce_params[:product_id].to_i
     s_id=product_sauce_params[:sauce_id].to_i
+    f=product_sauce_params[:flavor]
     q_in_cart=p_in_cart.quantity
     q=q_in_cart-1
     if q_in_cart>1
-      @cart.product_sauces=@cart.product_sauces.reject{ |p| p.product_id==p_in_cart.product_id && p.sauce_id==p_in_cart.sauce_id }
-      p=set_or_create_product(p_id,s_id,q)
+      @cart.product_sauces=@cart.product_sauces.reject{ |p| p.product_id==p_in_cart.product_id && p.sauce_id==p_in_cart.sauce_id && p.flavor==p_in_cart.flavor}
+      p=set_or_create_product(p_id,s_id,q,f)
       @cart.product_sauces<<p
     else
-      @cart.product_sauces=@cart.product_sauces.reject{ |p| p.product_id==p_in_cart.product_id && p.sauce_id==p_in_cart.sauce_id }
+      @cart.product_sauces=@cart.product_sauces.reject{ |p| p.product_id==p_in_cart.product_id && p.sauce_id==p_in_cart.sauce_id && p.flavor==p_in_cart.flavor}
 
     end
     
@@ -91,16 +95,16 @@ class OrderController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def product_sauce_params
-    params.require(:product_sauce).permit(:product_id, :sauce_id, :quantity)
+    params.require(:product_sauce).permit(:product_id, :sauce_id, :quantity, :flavor)
   end
   def ps_params_no_quantity
-    params.require(:product_sauce).permit(:product_id, :sauce_id)
+    params.require(:product_sauce).permit(:product_id, :sauce_id,:flavor)
 
   end
 
   def check_in_cart(cart, params)
     for p in cart.product_sauces
-      if p.product_id==params[:product_id].to_i && p.sauce_id==params[:sauce_id].to_i
+      if p.product_id==params[:product_id].to_i && p.sauce_id==params[:sauce_id].to_i && p.flavor==params[:flavor]
         return true
       end
     end
@@ -108,18 +112,18 @@ class OrderController < ApplicationController
   end
   def get_from_cart(cart, params)
     for p in cart.product_sauces
-      if p.product_id==params[:product_id].to_i && p.sauce_id==params[:sauce_id].to_i
+      if p.product_id==params[:product_id].to_i && p.sauce_id==params[:sauce_id].to_i && p.flavor==params[:flavor]
         return p
       end
     end
   end
-  def set_or_create_product(p_id,s_id,q)
-    p_in_db= ProductSauce.find_by(product_id:p_id, sauce_id:s_id, quantity:q)
+  def set_or_create_product(p_id,s_id,q,f)
+    p_in_db= ProductSauce.find_by(product_id:p_id, sauce_id:s_id, quantity:q, flavor:f)
     p=nil
     if p_in_db
       p=p_in_db
     else
-      p=ProductSauce.create(product_id:p_id, sauce_id:s_id, quantity:q)
+      p=ProductSauce.create(product_id:p_id, sauce_id:s_id, quantity:q,flavor:f)
     end
     return p
 
