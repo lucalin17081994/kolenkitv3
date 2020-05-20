@@ -35,9 +35,11 @@
                       <%end%>
 
                       <p><%= form.number_field :quantity , value:1, min: 1%></p>
-                      <p><%=form.label 'Descriptie:'%></p>
-                      <p><%=p.description%></p>
-                      <a><%= form.submit 'add to cart', {method: :post, class:"add-to-cart btn btn-danger"}%></a>
+                      <%if p.description!=""%>
+                        <p><%=form.label 'Descriptie:'%></p>
+                        <p><%=p.description%></p>
+                      <%end%>
+                      <a><%= form.submit 'Voeg toe aan winkelmandje', {method: :post, class:"add-to-cart btn btn-danger"}%></a>
                     </div>
                   </div>
                   

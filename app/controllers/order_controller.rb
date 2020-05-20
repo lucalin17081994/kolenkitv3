@@ -31,7 +31,7 @@ class OrderController < ApplicationController
       
       
       #@cart.product_sauces.delete(ProductSauce.find(p_in_cart.id))
-      @cart.product_sauces=@cart.product_sauces.reject{ |p| p.product_id==p_in_cart.product_id && p.sauce_id==p_in_cart.sauce_id && p.flavor==p_in_cart.flavor}
+      @cart.product_sauces=remove_from_cart(@cart,p_in_cart)
       p=set_or_create_product(p_id,s_id,q,f)
     else #if not in cart
       p_in_db= ProductSauce.find_by(product_sauce_params)
@@ -56,11 +56,11 @@ class OrderController < ApplicationController
     q_in_cart=p_in_cart.quantity
     q=q_in_cart-1
     if q_in_cart>1
-      @cart.product_sauces=@cart.product_sauces.reject{ |p| p.product_id==p_in_cart.product_id && p.sauce_id==p_in_cart.sauce_id && p.flavor==p_in_cart.flavor}
+      @cart.product_sauces=remove_from_cart(@cart,p_in_cart)
       p=set_or_create_product(p_id,s_id,q,f)
       @cart.product_sauces<<p
     else
-      @cart.product_sauces=@cart.product_sauces.reject{ |p| p.product_id==p_in_cart.product_id && p.sauce_id==p_in_cart.sauce_id && p.flavor==p_in_cart.flavor}
+      @cart.product_sauces=remove_from_cart(@cart,p_in_cart)
 
     end
     
@@ -86,6 +86,10 @@ class OrderController < ApplicationController
   
   private
   # Use callbacks to share common setup or constraints between actions.
+
+  def remove_from_cart(cart,p_in_cart)
+    cart.product_sauces.reject{ |p| p.product_id==p_in_cart.product_id && p.sauce_id==p_in_cart.sauce_id && p.flavor==p_in_cart.flavor}
+  end
   def set_product_sauce
     @product_sauce = ProductSauce.find(params[:id])
   end

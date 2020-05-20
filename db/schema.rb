@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_20_122618) do
+ActiveRecord::Schema.define(version: 2020_05_20_205807) do
 
   create_table "bestellings", force: :cascade do |t|
     t.integer "cart_id", null: false
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2020_05_20_122618) do
     t.boolean "isBezorgd"
     t.decimal "price"
     t.integer "user_id"
+    t.boolean "done", default: false
     t.index ["cart_id"], name: "index_bestellings_on_cart_id"
   end
 

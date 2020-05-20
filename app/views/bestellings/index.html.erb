@@ -1,45 +1,17 @@
-<div class="card">
-
-<p id="notice"><%= notice %></p>
-
-
-  <h1>Bestellings</h1>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Bestelling_id</th>
-        <th>Tel.Nummer</th>
-        <th>Totaalprijs</th>
-        <th>Ophalen/Bezorgen</th>
-        <th>Address/Naam</th>
-        <th>Acties</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @bestellings.each do |bestelling| %>
-        <tr>
-          <td><%= bestelling.id %></td>
-          
-          <td><%= bestelling.number %></td>
-          <td>€<%= bestelling.total_price %></td>
-          <%if bestelling.isBezorgd%>
-            <td>Bezorgen</td>
-          <%else%>
-            <td>Ophalen</td>
-          <%end%>
-          <td><%= bestelling.address %></td>
-          <td><%= link_to 'Show', bestelling %></td>
-
-          <td><%= link_to 'Destroy', bestelling, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <br>
-
-  <%= link_to 'Bestellingspagina', root_path %>
+<div class= "container">
+  <div class="card">
+  <p id="notice"><%= notice %></p>
+    <h1>Bestellingen</h1>
+    <% @bestellings.each do |bestelling| %>
+      <%if !bestelling.done%>
+        <div class="card bg-primary">
+          <%=render partial: 'bestellingen', locals:{bestelling:bestelling}%>
+        </div>
+      <%else%>
+        <div class="card bg-light">
+          <%=render partial: 'bestellingen', locals:{bestelling:bestelling}%>
+        </div>
+      <%end%>
+    <% end %>
+  </div>
 </div>

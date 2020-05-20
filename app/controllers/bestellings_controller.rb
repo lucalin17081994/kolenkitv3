@@ -57,7 +57,7 @@ class BestellingsController < ApplicationController
   def update
     respond_to do |format|
       if @bestelling.update(bestelling_params)
-        format.html { redirect_to @bestelling, notice: 'Bestelling was successfully updated.' }
+        format.html { redirect_to bestellings_path, notice: 'Bestelling was successfully updated.' }
         format.json { render :show, status: :ok, location: @bestelling }
       else
         format.html { render :edit }
@@ -88,7 +88,7 @@ class BestellingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bestelling_params
-      params.require(:bestelling).permit(:cart_id, :address, :number, :isBezorgd)
+      params.require(:bestelling).permit(:cart_id, :address, :number, :isBezorgd,:done)
     end
     def load_cart
       id=params[:cart_id]

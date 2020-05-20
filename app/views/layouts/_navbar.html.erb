@@ -4,8 +4,8 @@
     <%= octicon("home", :height => 64) %>
   </a>
   
-    <%if current_page?('/')%>
-      <div class="dropdown">
+  <%if current_page?('/')%>
+    <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Ga naar
       </button>
@@ -14,18 +14,15 @@
           <a class="dropdown-item" href="#<%=c.name.capitalize%>"><%=c.name.capitalize%></a>
           
       <%end%>
-    <%end%>
-  </div>
-</div>
+  
+      </div>
+    </div>
+  <%end%>
   <button class="navbar-toggler mr-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <%=render 'layouts/user_bar'%>
-
-  
   <button class="toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarCart" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle cart">
-    <%= octicon "credit-card" %>
+    Winkelmandje
   </button>
-    
-
 </nav>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   get 'current_user' => "bestellings#get_current_user"
   resources :bestellings
+  post 'bestellings', to:'bestellings#done'
   resources :carts
   resources :product_sauces
   resources :sauces
