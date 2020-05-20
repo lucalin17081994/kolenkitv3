@@ -2,7 +2,7 @@ class ProductSauce < ApplicationRecord
   belongs_to :product
   belongs_to :sauce
   has_and_belongs_to_many :carts
-  enum flavor: { vanille: 'vanille', aardbei: 'aardbei' }
+  enum flavor: { geen: "geen",vanille: 'vanille', aardbei: 'aardbei' }
 
   def price
     if quantity
@@ -15,7 +15,7 @@ class ProductSauce < ApplicationRecord
     end
   end
   def to_s
-    if flavor==nil
+    if flavor=="geen"
       if sauce.name!="geen"
         product.name+ " + "+sauce.name
       else

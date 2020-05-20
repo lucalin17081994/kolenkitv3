@@ -4,9 +4,7 @@
     <%@categories.each do |c|%>
     
       <p><div class="category-name" id=<%=c.name.capitalize%>><h1><%=c.name.capitalize%></h1></div></p>
-      <%if Rails.application.assets.find_asset(c.name.capitalize+".jpg")!=nil%>
-        <div class=category_image><img src=<%= asset_path(c.name.capitalize+".jpg") %>></div>
-      <%end%>
+      <div class=category_image><img src=<%= asset_path(c.name.capitalize+".jpg") %>></div>
       
       <% c.products.each do |p| %>
         <%= form_with(scope: :product_sauce, remote:true) do |form| %>
@@ -32,7 +30,8 @@
                       <%if p.category.name=="milkshakes"%>
                         <% options = options_for_select(ProductSauce.flavors.values) %>
                         <p><%= form.select :flavor,options%></p>
-                      
+                      <%else%>
+                        <%= form.hidden_field :flavor, value:"geen"%>
                       <%end%>
 
                       <p><%= form.number_field :quantity , value:1, min: 1%></p>
