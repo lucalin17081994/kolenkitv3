@@ -3,7 +3,7 @@
     <div id="wm-title"><h1>Winkelmandje</h1></div>
     <hr>
       <%if @cart%>  
-        <%@cart.product_sauces.order("product_id, sauce_id").each do |c|%>
+        <%@cart.product_sauces.order("product_id, sauce_id, flavor").each do |c|%>
           <div class="row">
             <div class="col-sm-5">
               <%=c.to_s%>
