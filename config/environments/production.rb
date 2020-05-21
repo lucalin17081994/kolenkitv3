@@ -95,8 +95,8 @@ Rails.application.configure do
     domain: "example.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password:ENV["GMAIL_PASSWORD"]
+    user_name: ENV["etenkolenkit@gmail.com"],
+    password:ENV["snackcounter"]
   }
 # doesn't have to be Heroku, but you get the idea.
   config.action_mailer.default_url_options = { :host => 'kolenkit.herokuapp.com' }
