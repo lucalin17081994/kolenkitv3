@@ -43,7 +43,7 @@
   </div>
   <div class="field">
     Tijd : 
-    <%= form.select :time_hour, (Time.now.hour..21).to_a %> : 
+    <%= form.select :time_hour, (Time.now.hour+2..21).to_a %> : 
     <%= form.select :time_minute, (0..60).to_a %>
   </div>
   
