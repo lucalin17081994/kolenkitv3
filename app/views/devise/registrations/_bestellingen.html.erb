@@ -3,16 +3,15 @@
 <p id="notice"><%= notice %></p>
 
 
-  <h1>Bestellings</h1>
+  <h1>Uw Geplaatsste Bestellingen</h1>
 
   <table>
     <thead>
       <tr>
-        <th>Bestelling_id</th>
-        <th>Tel.Nummer</th>
-        <th>Totaalprijs</th>
         <th>Ophalen/Bezorgen</th>
-        <th>Address/Naam</th>
+        <th>Naam/Adres</th>
+        <th>Ophaal/Bezorgtijd</th>
+        <th>Totaalprijs</th>
         <th>Acties</th>
         <th colspan="3"></th>
       </tr>
@@ -21,19 +20,16 @@
     <tbody>
       <% current_user.bestellings.each do |bestelling| %>
         <tr>
-          <td><%= bestelling.id %></td>
-          
-          <td><%= bestelling.number %></td>
-          <td>€<%= bestelling.total_price %></td>
           <%if bestelling.isBezorgd%>
             <td>Bezorgen</td>
           <%else%>
             <td>Ophalen</td>
           <%end%>
           <td><%= bestelling.address %></td>
-          <td><%= link_to 'Show', bestelling %></td>
-          <td><%= link_to 'Edit', edit_bestelling_path(bestelling) %></td>
-          <td><%= link_to 'Destroy', bestelling, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= bestelling.time.to_s(:time) %></td>
+          <td>€<%= bestelling.total_price %></td>
+          <td><%= link_to 'Bestelling weergeven', bestelling %></td>
+          
         </tr>
       <% end %>
     </tbody>
@@ -41,4 +37,4 @@
 
   <br>
 
-  <%= link_to 'Bestellingspagina', root_path %>
+  <%= link_to 'Naar de bestellingspagina', root_path %>

@@ -13,9 +13,11 @@ class OrderController < ApplicationController
   def add_to_cart
     if !@cart
       @cart=Cart.create
+      session[:cart_id]=@cart.id
     end
     if @cart.bestelling
       @cart=Cart.create
+      session[:cart_id]=@cart.id
     end
     session[:cart_id]=@cart.id
     if check_in_cart(@cart, product_sauce_params) #if in cart
