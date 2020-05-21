@@ -19,6 +19,7 @@ class OrderController < ApplicationController
   end
   
   def add_to_cart
+    
     if check_in_cart(@cart, product_sauce_params) #if in cart
       p_in_cart=get_from_cart(@cart, product_sauce_params)
       
