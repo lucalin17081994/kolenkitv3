@@ -49,7 +49,11 @@
     </p>
     <p>
         <strong>Tijdstip:</strong>
-        <%= bestelling.time.to_s(:time) %>
+        <% if bestelling.time.strftime("%H:%M") == "00:00" %>
+          Zo snel mogelijk
+        <%else%>
+          <%=bestelling.time.strftime("%H:%M")%>
+        <%end%>
       </p>
       <p>
         <strong>Opmerkingen:</strong>

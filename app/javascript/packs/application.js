@@ -67,3 +67,28 @@ $(function () {
   }).change(); //ensure visible state matches initially
 });
 
+function myFunction() {
+  // Get the checkbox
+  var checkBox = document.getElementById("bestelling_time");
+  // Get the output text
+  var timefields = document.getElementById("timefields");
+
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+    timefields.display="block";
+  } else {
+    text.style.display = "none";
+  }
+}
+$(function () {
+  
+
+  $("#bestelling_time").change(function () { 
+    if (this.checked ){
+      $('#timefields')[0].style.display="none";
+    }else{
+      $('#timefields')[0].style.display="block";
+    }
+  
+  }).change(); //ensure visible state matches initially
+});

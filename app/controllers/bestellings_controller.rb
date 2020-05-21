@@ -108,8 +108,12 @@ class BestellingsController < ApplicationController
     end
 
     def fix_params
+      if params[:bestelling][:time]=="1"
+        params[:bestelling][:time]=Time.zone.parse("00:00")
+      else
         time = Time.zone.parse((params[:bestelling][:time_hour])+":"+params[:bestelling][:time_minute])
         params[:bestelling][:time]=time
+      end
     end
     
 end

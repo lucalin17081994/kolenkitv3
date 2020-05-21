@@ -41,12 +41,13 @@
       <%= form.text_field :number%>
     <%end%>
   </div>
-  <div class="field">
+  <div class="field" id = "timefields">
     Tijd : 
     <%= form.select :time_hour, (16..21).to_a %> : 
     <%= form.select :time_minute, (0..60).to_a %>
+    
   </div>
-  
+  <%= form.check_box :time %> zo snel mogelijk
   <div class="field">
     <%=form.label :opmerkingen%>
     <%= form.text_area :note%>

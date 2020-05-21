@@ -1,25 +1,24 @@
 class OrderController < ApplicationController
   before_action :set_product_sauce, only: [:show, :edit, :update, :destroy]
   before_action :set_categories, only: [:index]
-  before_action :load_cart, if:@cart
+  before_action :load_cart
   def index
     #@cart=Cart.create
     @sauces=Sauce.all
     @products=Product.all
     @product_sauces = ProductSauce.all
-    
+    if @cart
+      if @cart.bestelling
+        @cart=Cart.create
+        session[:cart_id]=@cart.id
+      end
+    else
+      @cart=Cart.create
+      session[:cart_id]=@cart.id
+    end
   end
   
   def add_to_cart
-    if !@cart
-      @cart=Cart.create
-      session[:cart_id]=@cart.id
-    end
-    if @cart.bestelling
-      @cart=Cart.create
-      session[:cart_id]=@cart.id
-    end
-    session[:cart_id]=@cart.id
     if check_in_cart(@cart, product_sauce_params) #if in cart
       p_in_cart=get_from_cart(@cart, product_sauce_params)
       
@@ -35,15 +34,17 @@ class OrderController < ApplicationController
       #@cart.product_sauces.delete(ProductSauce.find(p_in_cart.id))
       @cart.product_sauces=remove_from_cart(@cart,p_in_cart)
       p=set_or_create_product(p_id,s_id,q,f)
+      @cart.product_sauces<<p
     else #if not in cart
       p_in_db= ProductSauce.find_by(product_sauce_params)
       if p_in_db
         p=p_in_db
+        @cart.product_sauces<<p
       else
         p=ProductSauce.create(product_sauce_params)
+        @cart.product_sauces<<p
       end
     end
-    @cart.product_sauces<<p
     respond_to do |format|
 
       format.js {render 'update_cart'}
@@ -137,16 +138,18 @@ class OrderController < ApplicationController
   def load_cart
     
     if session[:cart_id]#if session exist
-      if Cart.where(id: session[:cart_id]).size>0#if cart exist
+      if Cart.exists?(id: session[:cart_id])#if cart exist
         @cart=Cart.find(session[:cart_id])#find cart
         
         if @cart.bestelling#create new cart if order went through
           @cart=Cart.create
+          session[:cart_id]=@cart.id
         end
       end
     else
       #if session doesnt exist, set session to nil. carts are created on button click
-      session[:cart_id]=nil
+      @cart=Cart.create
+      session[:cart_id]=@cart.id
     end
     
   end

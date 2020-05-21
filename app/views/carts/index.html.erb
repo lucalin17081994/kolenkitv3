@@ -13,6 +13,7 @@
   <tbody>
     <% @carts.each do |cart| %>
       <tr>
+        <td><%=cart.id%> </td>
         <td><% cart.product_sauces.to_a.each do |c| %>
           <p><%=c%>
           aantal: <%=c.quantity%>
