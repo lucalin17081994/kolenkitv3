@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'kolenkit'
+  default from: 'eten@kolenkit.nl'
   layout 'mailer'
   
 end
