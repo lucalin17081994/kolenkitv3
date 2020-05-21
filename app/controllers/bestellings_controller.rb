@@ -2,7 +2,7 @@ class BestellingsController < ApplicationController
   before_action :set_bestelling, only: [:show, :edit, :update, :destroy]
   before_action :load_cart, only: [:new]
   before_action :require_admin, only:[:edit, :update, :destroy, :index]
-  before_action :fix_params, :only => [:create, :update]
+  before_action :fix_params, :only => [:create]
   # GET /bestellings
   # GET /bestellings.json
   def index
@@ -103,11 +103,8 @@ class BestellingsController < ApplicationController
     end
 
     def fix_params
-      if params[:bestelling][:time_hour] && params[:bestelling][:time_minute]
         time = Time.zone.parse((params[:bestelling][:time_hour])+":"+params[:bestelling][:time_minute])
-        
         params[:bestelling][:time]=time
-      end
     end
     
 end
