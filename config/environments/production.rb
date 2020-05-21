@@ -95,11 +95,17 @@ Rails.application.configure do
     domain: "example.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["etenkolenkit@gmail.com"],
-    password:ENV["snackcounter"]
+    user_name: ENV["GMAIL_USERNAME"],
+    password:ENV["GMAIL_PASSWORD"]
   }
 # doesn't have to be Heroku, but you get the idea.
   config.action_mailer.default_url_options = { :host => 'kolenkit.herokuapp.com' }
+  # ActionMailer Config
+# Setup for production - deliveries, no errors raised
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = false
+config.action_mailer.default :charset => "utf-8"
 
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
