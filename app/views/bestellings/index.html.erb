@@ -4,7 +4,7 @@
     <h1>Bestellingen</h1>
     <% @bestellings.each do |bestelling| %>
       <%if !bestelling.done%>
-        <div class="card bg-primary">
+        <div class="card bg-dark text-light">
           <%=render partial: 'bestellingen', locals:{bestelling:bestelling}%>
         </div>
       <%else%>

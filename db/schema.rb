@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_20_205807) do
+ActiveRecord::Schema.define(version: 2020_05_21_104707) do
 
   create_table "bestellings", force: :cascade do |t|
     t.integer "cart_id", null: false
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2020_05_20_205807) do
     t.decimal "price"
     t.integer "user_id"
     t.boolean "done", default: false
+    t.time "time"
+    t.string "note"
     t.index ["cart_id"], name: "index_bestellings_on_cart_id"
   end
 
@@ -70,6 +72,7 @@ ActiveRecord::Schema.define(version: 2020_05_20_205807) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "description"
     t.integer "category_id"
+    t.string "abbreviation"
   end
 
   create_table "sauces", force: :cascade do |t|
@@ -77,6 +80,7 @@ ActiveRecord::Schema.define(version: 2020_05_20_205807) do
     t.decimal "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "abbreviation"
   end
 
   create_table "users", force: :cascade do |t|

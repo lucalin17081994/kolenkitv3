@@ -35,16 +35,24 @@
       
 
       <%if @bestelling.isBezorgd%>
-        <strong>Bezorgadres:</strong>
-        <%= @bestelling.address %>
+        <p><strong>Bezorgadres:</strong>
+        <%= @bestelling.address %></p>
       <%else%>
-        <strong>Onder de naam:</strong>
-        <%=@bestelling.address%>
+        <p><strong>Onder de naam:</strong>
+        <%=@bestelling.address%></p>
       <%end%>
 
       <p>
         <strong>Uw telefoonnummer:</strong>
         <%= @bestelling.number %>
+      </p>
+      <p>
+        <strong>Tijdstip:</strong>
+        <%= @bestelling.time.to_s(:time) %>
+      </p>
+      <p>
+        <strong>Opmerkingen:</strong>
+        <%= @bestelling.note %>
       </p>
     </h2>
       

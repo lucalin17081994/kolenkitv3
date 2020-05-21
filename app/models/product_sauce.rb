@@ -26,6 +26,27 @@ class ProductSauce < ApplicationRecord
     end
     
   end
+  def afkorting
+    s=""
+    if product.abbreviation
+      s+=product.abbreviation
+    else
+      s+=product.name
+    end
+    if sauce.abbreviation
+      s+="+"+sauce.abbreviation
+    else
+      if sauce.name!="geen"
+        s+="+"+sauce.name
+      end
+    end
+    if flavor!="geen"
+      s+="+"+flavor
+    end
+    
+    return s
+  end
+
   def name
     if sauce.name!="geen"
       product.name+ " "+sauce.name

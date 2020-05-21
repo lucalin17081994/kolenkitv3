@@ -2,6 +2,7 @@ class BestellingsController < ApplicationController
   before_action :set_bestelling, only: [:show, :edit, :update, :destroy]
   before_action :load_cart, only: [:new]
   before_action :require_admin, only:[:edit, :update, :destroy, :index]
+  before_action :fix_params, :only => [:create, :update]
   # GET /bestellings
   # GET /bestellings.json
   def index
@@ -94,11 +95,19 @@ class BestellingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bestelling_params
-      params.require(:bestelling).permit(:cart_id, :address, :number, :isBezorgd,:done)
+      params.require(:bestelling).permit(:cart_id, :address, :number, :isBezorgd,:done,:time,:note)
     end
     def load_cart
       id=params[:cart_id]
       @cart=Cart.find(id)
+    end
+
+    def fix_params
+      if params[:bestelling][:time_hour] && params[:bestelling][:time_minute]
+        time = Time.zone.parse((params[:bestelling][:time_hour])+":"+params[:bestelling][:time_minute])
+        
+        params[:bestelling][:time]=time
+      end
     end
     
 end
