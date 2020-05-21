@@ -1,6 +1,7 @@
 <a data-toggle="collapse" href=#collapse<%=bestelling.id%> aria-expanded="true" aria-controls="<%=bestelling.id%>">
   <h2 class="card-title">
     <strong><%= bestelling.id %></strong>
+    <strong><%= bestelling.created_at.in_time_zone("Amsterdam").strftime("%Y-%m-%d %H:%M:%S")%></strong>
    
     <a class="float-right"><%= bestelling.address %></a>
   </h2>

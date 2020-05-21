@@ -3,6 +3,7 @@ class BestellingsController < ApplicationController
   before_action :load_cart, only: [:new]
   before_action :require_admin, only:[:edit, :update, :destroy, :index]
   before_action :fix_params, :only => [:create]
+  
   # GET /bestellings
   # GET /bestellings.json
   def index
@@ -12,8 +13,12 @@ class BestellingsController < ApplicationController
   # GET /bestellings/1
   # GET /bestellings/1.json
   def show
+    if @bestelling.user.id==current_user.id
+      @bestelling=Bestelling.find(params[:id])
+    else
+      redirect_to root_path
+    end
     
-    @bestelling=Bestelling.find(params[:id])
   end
 
   # GET /bestellings/new

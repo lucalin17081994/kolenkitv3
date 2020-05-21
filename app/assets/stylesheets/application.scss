@@ -34,7 +34,9 @@
 //     position: right 20%;
 //   }
 // }
+
 body{
+  padding-top:100px;
   background: {
     color: #B22222 !important; /* For browsers that do not support gradients */
     image: linear-gradient(to right, 	#696969	 , #708090		) !important;
@@ -57,7 +59,8 @@ img{
 }
 
 #cart-div{
-  position:right;
+  position:absolute;
+  margin-top:100px;
   
 
 }
@@ -107,7 +110,7 @@ body .card{
   font-family: 'Source Sans Pro', sans-serif;
   background: {
     color: whitesmoke !important; /* For browsers that do not support gradients */
-    image: linear-gradient(to right, 	#C0C0C0	 , #DCDCDC	) !important;
+    image: linear-gradient(to right, 	#C0C0C0	 , whitesmoke	) !important;
     
   }
 }
@@ -116,9 +119,7 @@ body .card{
 }
 
 
-#cart-div{
-  margin-top:100px;
-}
+
 
 
 // body .navbar {

@@ -1,10 +1,7 @@
 
 
 <p id="notice"><%= notice %></p>
-
-
-  <h1>Uw Geplaatsste Bestellingen</h1>
-
+  <h1>Uw Geplaatste Bestellingen</h1>
   <table>
     <thead>
       <tr>
@@ -29,12 +26,8 @@
           <td><%= bestelling.time.to_s(:time) %></td>
           <td>€<%= bestelling.total_price %></td>
           <td><%= link_to 'Bestelling weergeven', bestelling %></td>
-          
         </tr>
       <% end %>
     </tbody>
   </table>
-
   <br>
-
-  <%= link_to 'Naar de bestellingspagina', root_path %>
