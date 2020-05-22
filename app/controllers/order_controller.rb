@@ -9,12 +9,10 @@ class OrderController < ApplicationController
     @product_sauces = ProductSauce.all
     if @cart
       if @cart.bestelling
-        @cart=Cart.create
-        session[:cart_id]=@cart.id
+        @cart=make_cart
       end
     else
-      @cart=Cart.create
-      session[:cart_id]=@cart.id
+      @cart= make_cart
     end
   end
   
@@ -136,6 +134,12 @@ class OrderController < ApplicationController
     return p
 
   end
+  def make_cart
+    cart=Cart.create
+    
+    session[:cart_id]=cart.id
+    return cart
+  end
   def load_cart
     
     if session[:cart_id]#if session exist
@@ -143,14 +147,12 @@ class OrderController < ApplicationController
         @cart=Cart.find(session[:cart_id])#find cart
         
         if @cart.bestelling#create new cart if order went through
-          @cart=Cart.create
-          session[:cart_id]=@cart.id
+          @cart=make_cart
         end
       end
     else
       #if session doesnt exist, set session to nil. carts are created on button click
-      @cart=Cart.create
-      session[:cart_id]=@cart.id
+      @cart=make_cart
     end
     
   end

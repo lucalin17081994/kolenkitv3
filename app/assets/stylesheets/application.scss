@@ -68,6 +68,7 @@ body .card{
   style{
     width: 16rem !important;
     background-color:white !important;
+    
   }
   
 }
@@ -76,6 +77,10 @@ body .card{
   
 }
 #bestelling_isBezorgd{
+  width: 20px; height: 20px;
+  
+}
+#bestelling_time{
   width: 20px; height: 20px;
   
 }
@@ -116,7 +121,6 @@ body .card{
 #winkelmandje .btn{
   line-height: 0;
 }
-
 
 
 

@@ -6,7 +6,7 @@ class Sauce < ApplicationRecord
     if price==0
       name
     else
-      name+"(+€"+price.to_s+")"
+      name+"(+€"+'%.2f' % price.to_s+")"
     end
   end
 end

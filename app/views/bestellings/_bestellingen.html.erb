@@ -1,8 +1,14 @@
 <a data-toggle="collapse" href=#collapse<%=bestelling.id%> aria-expanded="true" aria-controls="<%=bestelling.id%>">
   <h2 class="card-title">
     <strong><%= bestelling.id %></strong>
-    <strong><%= bestelling.created_at.in_time_zone("Amsterdam").strftime("%Y-%m-%d %H:%M:%S")%></strong>
-   
+    <strong> | <%= bestelling.created_at.in_time_zone("Amsterdam").strftime("%Y-%m-%d %H:%M:%S")%> | </strong>
+    <strong> TIJD: <%=bestelling.time.strftime("%H:%M")%> | </strong>
+    <strong>  <%if bestelling.isBezorgd%>
+            Bez
+          <%else%>
+            Oph
+          <%end%></strong>
+  
     <a class="float-right"><%= bestelling.address %></a>
   </h2>
 </a>
@@ -10,7 +16,6 @@
       
 <div id=<%="collapse"+bestelling.id.to_s%> class="collapse">
   <h2 >
-    <p>Check aantal rijen in de cart voor zekerheid: <%=bestelling.cart.product_sauces.size%></p>
     <hr>
     <%bestelling.cart.product_sauces.each do |c|%>
       <div class="row">
@@ -19,16 +24,19 @@
         </div>
         
         <div class="col-md-6"style="text-align:right;">
-          <span>subtotaal: €<%=c.price%></span>
+          <span>subtotaal: €<%='%.2f' % c.price%></span>
         </div>
       </div>
         
         
     <%end%>
-    <%if bestelling.isBezorgd %>
-      <div class="col-md-4 ml-auto">Bezorgkosten: €2</div>
+    <%if bestelling.isBezorgd && bestelling.total_price<37.0%>
+      <div class="col-md-6 ml-auto"style="text-align:right;">Bezorgkosten: €2.00</div>
+    <%elsif !bestelling.isBezorgd%>
+    <%else%>
+      <div class="col-md-6 ml-auto"style="text-align:right;">Gratis bezorgkosten</div>
     <%end%>
-    <div style="text-align:right;">Totaalbedrag: €<span><%=bestelling.total_price%></span></div>
+    <div style="text-align:right;">Totaalbedrag: €<span><%='%.2f' % bestelling.total_price%></span></div>
     <hr>
     <p>
       <strong>Bezorgen of Ophalen:</strong>

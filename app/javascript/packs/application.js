@@ -43,17 +43,24 @@ $(function () {
   $('#bestelling_isBezorgd').change(function () {  
     $($('label[for="bestelling_address"]')[0]).text("Naam"); 
     $(".heleBestelling").html(text);
+    $("#zsm_checkbox")[0].style.display="none";
     if (this.checked ){
+      $('#timefields_ophaal')[0].style.display="none";
+      $('#timefields_bezorg')[0].style.display="block";
+      $("#zsm_checkbox")[0].style.display="block";
       checked=true;
       $.get('/current_user', function(result){
         $($('#bestelling_address')[0]).val(result.address);
       });
       $($('label[for="bestelling_address"]')[0]).text("Adres");
-      $(".heleBestelling").html(text+"bezorg kosten: <div style=\"float:right;\">subtotaal: €2</div><hr>");
+      $(".heleBestelling").html(text+"bezorg kosten: <div style=\"float:right;\">subtotaal: €2.00</div><hr>");
       var bedrag=$("#totaalbedrag").text()
       $("#totaalbedrag").html(parseFloat(bedrag)+2);
     }
     if (!this.checked && checked){
+      $("#zsm_checkbox")[0].style.display="none";
+      $('#timefields_ophaal')[0].style.display="block";
+      $('#timefields_bezorg')[0].style.display="none";
       checked=false;
       $.get('/current_user', function(result){
         $($('#bestelling_address')[0]).val(result.name);
@@ -67,23 +74,23 @@ $(function () {
   }).change(); //ensure visible state matches initially
 });
 
-function myFunction() {
-  // Get the checkbox
-  var checkBox = document.getElementById("bestelling_time");
-  // Get the output text
-  var timefields = document.getElementById("timefields");
+// function myFunction() {
+//   // Get the checkbox
+//   var checkBox = document.getElementById("bestelling_time");
+//   // Get the output text
+//   var timefields = document.getElementById("timefields");
 
-  // If the checkbox is checked, display the output text
-  if (checkBox.checked == true){
-    timefields.display="block";
-  } else {
-    text.style.display = "none";
-  }
-}
+//   // If the checkbox is checked, display the output text
+//   if (checkBox.checked == true){
+//     timefields.display="block";
+//   } else {
+//     text.style.display = "none";
+//   }
+// }
 $(function () {
   
 
-  $("#bestelling_time").change(function () { 
+  $("#bestelling_zsm_box").change(function () { 
     if (this.checked ){
       $('#timefields')[0].style.display="none";
     }else{
