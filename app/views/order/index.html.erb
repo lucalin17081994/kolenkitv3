@@ -1,23 +1,24 @@
 
-<div class="container">
-  <div class="col-md-12">
-   
-    <div class="card border-danger text-black mb-3 index-pagina-cards">
-      <p id="notice"><%= notice %>
-      <div class="card-body">
-        
-        <%=render 'bestellingsformulier'%>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 col-lg-8">
+    
+      <div class="card border-danger text-black mb-3 index-pagina-cards">
+        <p id="notice"><%= notice %>
+        <div class="card-body">
+          
+          <%=render 'bestellingsformulier'%>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-  <div class="col-lg-6 col-md-12 ml-auto fixed-top" id="cart-div">
-    <div class="card border-danger mb-3 collapse show" id="navbarCart" >
-      
-        <%=render 'cart'%>
-      
+    <div class="col-lg-4 col-md-12 position-fixed  collapse show" id="navbarCart">
+        
+          <%=render 'cart'%>
+        
     </div>
   </div>
   
 </div>
+
+  
 

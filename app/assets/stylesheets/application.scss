@@ -35,13 +35,24 @@
 //   }
 // }
 
+
 body{
-  padding-top:100px;
+  .navbar{
+    margin-bottom:10px;
+  }
   background: {
     color: #B22222 !important; /* For browsers that do not support gradients */
     image: linear-gradient(to right, 	#696969	 , #708090		) !important;
     
   }
+}
+body .navbar-brand:hover{
+  border:1px solid black;
+  border-radius: 5px;
+  
+}
+body .btn:hover{
+  border:1px solid black;
 }
 .card-block{
   font-size:large;
@@ -58,11 +69,11 @@ img{
   
 }
 
-#cart-div{
-  margin-top:100px;
+#navbarCart{
+  right:0;
   
-
 }
+
 body .card{
   
   style{

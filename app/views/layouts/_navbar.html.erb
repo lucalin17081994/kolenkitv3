@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
 
   <a class="navbar-brand" href=<%=root_path%>>
     <%= octicon("home", :height => 64) %>
@@ -22,7 +22,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <%=render 'layouts/user_bar'%>
-  <button class="toggler ml-auto btn btn-dark" type="button" data-toggle="collapse" data-target="#navbarCart" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle cart">
+  <button class="toggler btn btn-dark" id="cart-button" type="button" data-toggle="collapse" data-target="#navbarCart" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle cart">
     Winkelmandje
   </button>
 </nav>

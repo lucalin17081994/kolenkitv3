@@ -13,39 +13,34 @@
         <div class="card-body">
           <h1 class="card-title"><%= p.name.capitalize %> € <%= p.price %></h1>
           <%=form.hidden_field :product_id, value: p.id%>
-                
-            </a>
-              </div>
-              <div id=<%=p.name%> class="collapse">
-                <div class="card-block">
-                  <div class="card-body">
-                    <%if c.hasSauce%>
-                      <% options = options_for_select(@sauces.collect{ |p| [p.to_s, p.id] }) %>
-                      <p><%= form.select :sauce_id,options%></p>
-                    <%else%>
-                      <%= form.hidden_field :sauce_id, value:Sauce.find_by(name:"geen").id%>
-                    <%end%>
-                    <%if p.category.name=="milkshakes"%>
-                      <% options = options_for_select(ProductSauce.flavors.values) %>
-                      <p><%= form.select :flavor,options%></p>
-                    <%else%>
-                      <%= form.hidden_field :flavor, value:"geen"%>
-                    <%end%>
+        </div>
+      </a>
+        <div id=<%=p.name%> class="collapse">
+          <div class="card-block">
+            <div class="card-body">
+              <%if c.hasSauce%>
+                <% options = options_for_select(@sauces.collect{ |p| [p.to_s, p.id] }) %>
+                <p><%= form.select :sauce_id,options%></p>
+              <%else%>
+                <%= form.hidden_field :sauce_id, value:Sauce.find_by(name:"geen").id%>
+              <%end%>
+              <%if p.category.name=="milkshakes"%>
+                <% options = options_for_select(ProductSauce.flavors.values) %>
+                <p><%= form.select :flavor,options%></p>
+              <%else%>
+                <%= form.hidden_field :flavor, value:"geen"%>
+              <%end%>
 
-                    <p><%= form.number_field :quantity , value:1, min: 1%></p>
-                    <%if p.description!=""%>
-                      <%=form.label 'Beschrijving:'%>
-                      <div class="card-body"><%=p.description%></div>
-                    <%end%>
-                    <a><%= form.submit 'Voeg toe aan winkelmandje', {method: :post, class:"add-to-cart btn btn-danger"}%></a>
-                  </div>
-                </div>
-                
-
-              </div>
+              <p><%= form.number_field :quantity , value:1, min: 1%></p>
+              <%if p.description!=""%>
+                <%=form.label 'Beschrijving:'%>
+                <div class="card-body"><%=p.description%></div>
+              <%end%>
+              <a><%= form.submit 'Voeg toe aan winkelmandje', {method: :post, class:"add-to-cart btn btn-danger"}%></a>
             </div>
-          
-      
+          </div>
+        </div>
+      </div>
     <% end %>
     <br>
   <%end%>
