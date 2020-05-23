@@ -31,8 +31,8 @@
     <div class="field" id = "timefields_ophaal">
       Kies een ophaalmoment:
     
-      <%ophaal_array=((Time.zone.now.hour..23).to_a.product((0..55).step(5).to_a).map{|h, m| h.to_s+":"+m.to_s}.map{|t| Time.zone.parse(t).strftime("%H:%M") if Time.zone.parse(t)>=Time.zone.now+(5*60)}).compact%>
-      <%beschikbaar=ophaal_array.map{ |t| t if !Bestelling.find_by(time: Time.zone.parse(t)) }.compact %>
+      <%ophaal_array=((Time.now.hour..23).to_a.product((0..55).step(5).to_a).map{|h, m| h.to_s+":"+m.to_s}.map{|t| Time.parse(t).strftime("%H:%M") if Time.parse(t)>=Time.now+(5*60)}).compact%>
+      <%beschikbaar=ophaal_array.map{ |t| t if !Bestelling.find_by(time: Time.parse(t)) }.compact %>
       <%= form.select :time_ophaal, beschikbaar%>
       
     </div>
@@ -40,7 +40,7 @@
     
     <div class="field" id = "timefields_bezorg" style="display:none;">
       Of kies een tijd :
-      <%bezorg_array=((Time.zone.now.hour+1..23).to_a.product((0..55).step(5).to_a).map{|h, m| h.to_s+":"+m.to_s}.map{|t| Time.zone.parse(t).strftime("%H:%M") if Time.zone.parse(t)>=Time.zone.now}).compact%>
+      <%bezorg_array=((Time.now.hour+1..23).to_a.product((0..55).step(5).to_a).map{|h, m| h.to_s+":"+m.to_s}.map{|t| Time.parse(t).strftime("%H:%M") if Time.parse(t)>=Time.now}).compact%>
       <%= form.select :time_bezorg, bezorg_array%>
     </div>
   </div>
