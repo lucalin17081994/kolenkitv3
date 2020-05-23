@@ -17,11 +17,9 @@ class BestellingsController < ApplicationController
   # GET /bestellings/1
   # GET /bestellings/1.json
   def show
-    if @bestelling.user.id==current_user.id
-      @bestelling=Bestelling.find(params[:id])
-    else
-      redirect_to root_path
-    end
+    
+    @bestelling=Bestelling.find(params[:id])
+    
     
   end
 
