@@ -3,7 +3,7 @@ class Bestelling < ApplicationRecord
   validates :address, presence: true
   validates :number, presence: true
   validates :cart, presence:true
-  validates :time, presence:true
+  validates :time, :presence=>{:message =>": geef a.u.b. een tijd aan"}
   belongs_to :user, optional: true
   belongs_to :cart
   

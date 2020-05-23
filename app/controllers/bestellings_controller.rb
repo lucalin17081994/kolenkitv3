@@ -37,6 +37,7 @@ class BestellingsController < ApplicationController
 
   # GET /bestellings/1/edit
   def edit
+    @cart=Bestelling.find(params[:id]).cart
   end
 
   # POST /bestellings

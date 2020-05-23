@@ -53,7 +53,7 @@ $(function () {
         $($('#bestelling_address')[0]).val(result.address);
       });
       $($('label[for="bestelling_address"]')[0]).text("Adres");
-      $(".heleBestelling").html(text+"bezorg kosten: <div style=\"float:right;\">subtotaal: €2.00</div><hr>");
+      $(".heleBestelling").html(text+"<h3 class=\"card-body\">bezorg kosten: <div style=\"float:right;\">subtotaal: €2.00</div><hr></h3>");
       var bedrag=$("#totaalbedrag").text()
       $("#totaalbedrag").html(parseFloat(bedrag)+2);
     }
