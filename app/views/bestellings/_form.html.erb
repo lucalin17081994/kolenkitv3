@@ -40,7 +40,7 @@
     
     <div class="field" id = "timefields_bezorg" style="display:none;">
       Of kies een tijd :
-      <%bezorg_array=((Time.now.hour+1..23).to_a.product((0..55).step(5).to_a).map{|h, m| h.to_s+":"+m.to_s}.map{|t| Time.parse(t).strftime("%H:%M") if Time.parse(t)>=Time.now}).compact%>
+      <%bezorg_array=((Time.now.hour+1..23).to_a.product((0..55).step(5).to_a).map{|h, m| h.to_s+":"+m.to_s}.map{|t| Time.parse(t).strftime("%H:%M") if Time.parse(t)>=Time.now+3600}).compact%>
       <%= form.select :time_bezorg, bezorg_array%>
     </div>
   </div>

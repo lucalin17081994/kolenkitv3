@@ -2,15 +2,18 @@ class BestellingsController < ApplicationController
   
   before_action :set_bestelling, only: [:show, :edit, :update, :destroy]
   before_action :load_cart, only: [:new]
-  before_action :require_admin, only:[:edit, :update, :destroy, :index]
+  before_action :require_admin, only:[:edit, :update, :destroy, :index,:alle_bestellingen]
   before_action :fix_params, :only => [:create]
  
   # GET /bestellings
   # GET /bestellings.json
   def index
+    #@bestellings = Bestelling.all
+    @bestellings=Bestelling.where("created_at >= ?", Time.zone.now.beginning_of_day)
+  end
+  def alle_bestellingen
     @bestellings = Bestelling.all
   end
-
   # GET /bestellings/1
   # GET /bestellings/1.json
   def show
@@ -112,16 +115,13 @@ class BestellingsController < ApplicationController
       if params[:bestelling][:zsm_box]=="1"
         params[:bestelling][:time]=Time.zone.parse("00:00")
       else
-        if params[:bestelling][:time_bezorg]
-          if params[:bestelling][:isBezorgd]=="1"
-            time = Time.zone.parse(params[:bestelling][:time_bezorg])
-            params[:bestelling][:time]=time
-          end
-        else
-          if params[:bestelling][:time_ophaal]
-            time = Time.zone.parse(params[:bestelling][:time_ophaal])
-            params[:bestelling][:time]=time
-          end
+        if params[:bestelling][:isBezorgd]=="1"
+          time = Time.zone.parse(params[:bestelling][:time_bezorg])
+          params[:bestelling][:time]=time
+        else params[:bestelling][:time_ophaal]
+          time = Time.zone.parse(params[:bestelling][:time_ophaal])
+          params[:bestelling][:time]=time
+          
         end
       end
     end

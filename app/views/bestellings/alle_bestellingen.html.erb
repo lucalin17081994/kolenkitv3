@@ -1,0 +1,17 @@
+<div class= "container-fluid">
+  <div class="card">
+  <p id="notice"><%= notice %></p>
+    <h1>Bestellingen</h1>
+    <% @bestellings.each do |bestelling| %>
+      <%if !bestelling.done%>
+        <div class="card bg-dark text-light">
+          <%=render partial: 'bestellingen', locals:{bestelling:bestelling}%>
+        </div>
+      <%else%>
+        <div class="card bg-light">
+          <%=render partial: 'bestellingen', locals:{bestelling:bestelling}%>
+        </div>
+      <%end%>
+    <% end %>
+  </div>
+</div>
