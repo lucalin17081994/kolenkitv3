@@ -7,81 +7,85 @@
         <% end %>
     </div>
   <% end %>
-  <div class="heleBestelling">
-    <%@cart.product_sauces.each do |c|%>
-      <h3 class="card-body">
-        <p><%=c.quantity%> <%=c.to_s.capitalize%>
-        <span id="itemprice">subtotaal: €<%='%.2f' % c.price%></span></p>
-        <hr>
-      </div>
-    <%end%>
-  </div>
-  <h3 class="card-body">
-
-    <div style="text-align:right;">Totaalbedrag: €<span id="totaalbedrag"><%='%.2f' % @cart.price%></span></div>
-  </h3>
-  <hr>
-  <h3 class="card-body">
-    <div class="field">
-        <%= form.check_box :isBezorgd %> Laten Bezorgen (€2.00 bezorgkosten)<br />
-    </div>
-    <p>
-      <div id = "zsm_checkbox"><%= form.check_box :zsm_box %> zo snel mogelijk</div>
-    </p>
-    <div id="timefields">
-      <p>
-        <div class="field" id = "timefields_ophaal">
-          Kies een ophaalmoment:
+  <div class="bestellingscontainer">
+    <div class="heleBestelling">
+      <%@cart.product_sauces.each do |c|%>
+        <h3 class="card-body">
+          <p><%=c.quantity%> <%=c.to_s.capitalize%>
+          <span id="itemprice">subtotaal: €<%='%.2f' % c.price%></span></p>
+          <hr>
         
-          <%ophaal_array=((Time.now.hour..23).to_a.product((0..55).step(5).to_a).map{|h, m| h.to_s+":"+m.to_s}.map{|t| Time.parse(t).strftime("%H:%M") if Time.parse(t)>=Time.now+(5*60)}).compact%>
-          <%beschikbaar=ophaal_array.map{ |t| t if !Bestelling.find_by(time: Time.zone.parse(t)) }.compact %>
-          <%= form.select :time_ophaal, beschikbaar, include_blank: true%>
-          
-        </div>
-      </p>
-      <p> 
-        <div class="field" id = "timefields_bezorg" style="display:none;">
-          Of kies een bezorgtijd :
-          <%bezorg_array=((Time.now.hour+1..23).to_a.product((0..55).step(5).to_a).map{|h, m| h.to_s+":"+m.to_s}.map{|t| Time.parse(t).strftime("%H:%M") if Time.parse(t)>=Time.now+3600}).compact%>
-          <%= form.select :time_bezorg, bezorg_array, include_blank: true%>
-        </div>
-      </p>
+      <%end%>
     </div>
+    <h3 class="card-body">
+      <div style="text-align:right;">Totaalbedrag: €<span id="totaalbedrag"><%='%.2f' % @cart.price%></span></div>
+    </h3>
 
-    <p>
+    <hr>
+
+    <h3 class="card-body">
       <div class="field">
-        <%=form.label :opmerkingen%>
-        <%= form.text_area :note%>
+          <%= form.check_box :isBezorgd %> Laten Bezorgen (€2.00 bezorgkosten)<br />
       </div>
-    </p>
-  <hr>
+      <p>
+        <div id = "zsm_checkbox"><%= form.check_box :zsm_box %> zo snel mogelijk</div>
+      </p>
+      <div id="timefields">
+        <p>
+          <div class="field" id = "timefields_ophaal">
+            Kies een ophaalmoment:
+          
+            <%ophaal_array=((Time.now.hour..23).to_a.product((0..55).step(5).to_a).map{|h, m| h.to_s+":"+m.to_s}.map{|t| Time.parse(t).strftime("%H:%M") if Time.parse(t)>=Time.now+(5*60)}).compact%>
+            <%beschikbaar=ophaal_array.map{ |t| t if !Bestelling.find_by(time: Time.zone.parse(t)) }.compact %>
+            <%= form.select :time_ophaal, beschikbaar, include_blank: true%>
+            
+          </div>
+        </p>
+        <p> 
+          <div class="field" id = "timefields_bezorg" style="display:none;">
+            Of kies een bezorgtijd :
+            <%bezorg_array=((Time.now.hour+1..23).to_a.product((0..55).step(5).to_a).map{|h, m| h.to_s+":"+m.to_s}.map{|t| Time.parse(t).strftime("%H:%M") if Time.parse(t)>=Time.now+3600}).compact%>
+            <%= form.select :time_bezorg, bezorg_array, include_blank: true%>
+          </div>
+        </p>
+      </div>
 
-    <h1 class="card-title">Uw gegevens:</h1>
-    <h2 class="card-body">
-    <div class="field" id="addressField">
-      <%= form.label :address %>
-      <%if current_user%>
-        <%= form.text_field :address , :value => current_user.name%>
-      <%else%>
-        <%= form.text_field :address%>
-      <%end%>
-    </div>
-    
-    
-    <div class="field">
-      <%if current_user%>
-        Telefoon Nummer <%= form.text_field :number, :value => current_user.number%>
-      <%else%>
-        Telefoon Nummer <%= form.text_field :number%>
-      <%end%>
-    </div>
-    
-    
+      <p>
+        <div class="field">
+          <%=form.label :opmerkingen%>
+          <%= form.text_area :note%>
+        </div>
+      </p>
+   
+
+      <h1 class="card-title">Uw gegevens:</h1>
+      <h2 class="card-body">
+        <div class="field" id="addressField">
+          <%= form.label :address %>
+          <%if current_user%>
+            <%= form.text_field :address , :value => current_user.name%>
+          <%else%>
+            <%= form.text_field :address%>
+          <%end%>
+        </div>
+      
+      
+      
+        <div class="field">
+          <%if current_user%>
+            Telefoon Nummer <%= form.text_field :number, :value => current_user.number%>
+          <%else%>
+            Telefoon Nummer <%= form.text_field :number%>
+          <%end%>
+        </div>
+      </h2>
+      
 
 
-    <%= form.hidden_field :cart_id, :value => @cart.id %>
-    <div class="actions">
-      <%= form.submit 'Bestellen'%>
-    </div>
-  </h3>
+      <%= form.hidden_field :cart_id, :value => @cart.id %>
+      <div class="actions">
+        <%= form.submit 'Bestellen'%>
+      </div>
+    </h3>
+  </div>
 <% end %>

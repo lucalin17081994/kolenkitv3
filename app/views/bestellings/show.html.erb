@@ -3,9 +3,9 @@
 <div class="card mx-auto"style="width: 960px;">
   <p id="notice"><%= notice %></p>
   <h1 class="card-title">Samenvatting van uw bestelling:</h1>
-  <h2 class="card-body">
+  
     <%@bestelling.cart.product_sauces.each do |c|%>
-
+      <h2 class="card-body">
         <div class="row">
           <div class="col-md-6">
             <%=c.quantity.to_s+" "+c.to_s%>
@@ -15,7 +15,7 @@
             <span>subtotaal: €<%=c.price%></span>
           </div>
         </div>
-  </h2>   
+      </h2>   
           
       <%end%>
       <%if @bestelling.isBezorgd %>
