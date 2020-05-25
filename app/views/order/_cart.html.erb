@@ -7,10 +7,10 @@
           <div class="row">
             
             <div class="col-sm-5">
-              <h3><%=c.to_s%></h3>
+              <h4><%=c.to_s%></h4>
             </div>
             <div class="col-sm-2">
-              <h3><%=c.quantity%></h3>
+              <h4><%=c.quantity%></h4>
             </div>
             <div class=col-sm-0>
             <%= form_with(scope: :product_sauce, remote: true) do |form| %>
@@ -50,12 +50,12 @@
               <%end%>
             </div>
             <div class="col-sm-2">
-              <h3>€<%='%.2f' % c.price%></h3>
+              <h4>€<%='%.2f' % c.price%></h4>
             </div>
           </div>
           <hr>
         <%end%>
-        <h3><strong>Totaalbedrag: </strong> € <%='%.2f' % @cart.price%></h3>
+        <h4><strong>Totaalbedrag: </strong> € <%='%.2f' % @cart.price%></h4>
         <div class="float-right">
         <%= button_to 'Bestellen', new_bestelling_path, method: :get, params:{cart_id: @cart} %>
       </div>
