@@ -1,0 +1,8 @@
+<div class="jumbotron position-fixed" >
+      <h2>Ga direct naar</h2>
+
+      <%@categories.each do |c|%>
+         <h4><a class="dropdown-item" href="#<%=c.name.capitalize.delete(' ')%>"><%=c.name.capitalize%></a></h4>
+      <%end%>
+
+</div>
