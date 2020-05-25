@@ -35,7 +35,7 @@ menu=Category.create(name: "menus", hasSauce: false)
 ms=Category.create(name: "milkshakes", hasSauce: false)
 bg=Category.create(name: "burgers", hasSauce: true)
 loemp=Category.create(name: "loempias", hasSauce: false)
-ger=Category.create(name: "gerechten", hasSauce: false)
+ger=Category.create(name: "diverse gerechten", hasSauce: false)
 pb=Category.create(name: "partyboxes", hasSauce: false)
 
 
@@ -74,7 +74,7 @@ Product.create(name: "hamburger speciaal",price: 3.6,description: "zigeunersaus,
 Product.create(name: "hamburger speciaal met ei",price:3.6 ,description: "zigeunersaus, mayonaise en gebakken uitjes met eitje bovenop", abbreviation: "hspei", category:bg)
 Product.create(name: "hamburger hawaai",price: 3.65,description: "", abbreviation: "hamb hawaai", category:bg)
 Product.create(name: "cheeseburger",price:3.15 ,description: "", abbreviation: "hamb", category:bg)
-Product.create(name: "saté",price: 4,description: "3 stokjes saté", abbreviation: "",category:ger)
+Product.create(name: "saté",price: 4,description: "3 stokjes saté met pindasaus en gebakken uitjes", abbreviation: "",category:ger)
 Product.create(name: "kaassoufflé",price: 1.4,description: "", abbreviation: "ks",category:sn)
 Product.create(name: "kalfs kroket",price: 1.4,description: "", abbreviation: "kkr",category:sn)
 Product.create(name: "goulash kroket",price: 1.4,description: "", abbreviation: "goul kr",category:sn)
