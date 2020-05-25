@@ -2,13 +2,13 @@
 
   <%@categories.each do |c|%>
   
-    <p><div class="category-name" id=<%=c.name.capitalize%>><h1><%=c.name.capitalize%></h1></div></p>
-    <div class=category_image><img src=<%= asset_path(c.name.capitalize+".jpg") %>></div>
+    <p><div class="category-name" id="<%=c.name.capitalize%>"><h1><%=c.name.capitalize%></h1></div></p>
+    <div class=category_image><img src="<%= asset_path(c.name+".jpg") %>" style="height:200px"></div>
     
     <% c.products.each do |p| %>
       <%= form_with(scope: :product_sauce, remote:true) do |form| %>
         <div class="card product-card ">
-          <a class="btn btn-white" data-toggle="collapse" href=<%="#"+p.name%>  style="color: black; text-decoration: none;top:0;left:0;height:100%;width:100%;"aria-expanded="true" aria-controls=<%="#"+p.name%>>
+          <a class="btn btn-white" data-toggle="collapse" href="<%="#"+p.name%>"  style="color: black; text-decoration: none;top:0;left:0;height:100%;width:100%;"aria-expanded="true" aria-controls=<%="#"+p.name%>>
         
         <div class="card-body">
           <h1 class="card-title"><%= p.name.capitalize %> € <%= p.price %></h1>
