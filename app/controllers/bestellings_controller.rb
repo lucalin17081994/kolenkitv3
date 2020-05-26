@@ -95,6 +95,12 @@ class BestellingsController < ApplicationController
        format.json{ render :json => current_user.to_json }
     end
   end
+
+  def print_bestelling
+    @bestelling=Bestelling.find(params[:id])
+    render 'print_bestelling'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bestelling

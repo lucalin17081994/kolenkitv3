@@ -100,3 +100,12 @@ $(function () {
   }).change(); //ensure visible state matches initially
 });
 
+
+
+$(function(){
+  $("#printbutton").click(function (){
+    window.print();
+  })
+})
+
+

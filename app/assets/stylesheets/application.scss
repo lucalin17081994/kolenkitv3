@@ -134,7 +134,19 @@ body .card{
 }
 
 
-
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #section_to_print, #section_to_print * {
+    visibility: visible;
+  }
+  #section_to_print {
+    left: 0;
+    top: 0;
+    border:none;
+  }
+}
 
 // body .navbar {
   

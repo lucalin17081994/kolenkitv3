@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :bestellings
   get '/alle_bestellingen', to:'bestellings#alle_bestellingen'
   post 'bestellings', to:'bestellings#done'
+  get 'bestellings/:id/print_bestelling', to:'bestellings#print_bestelling'
   resources :carts
   resources :product_sauces
   resources :sauces
