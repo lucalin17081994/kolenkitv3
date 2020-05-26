@@ -67,7 +67,7 @@
         <strong>Opmerkingen:</strong>
         <%= bestelling.note %>
       </p>
-    <%=link_to 'Show', bestelling%>
+    <%=link_to 'Show', bestelling%><br>
     <%=link_to 'naar de printpagina', 'bestellings/'+bestelling.id.to_s+"/print_bestelling"%>
 
     <%= form_with(model: bestelling, local: true) do |form| %>

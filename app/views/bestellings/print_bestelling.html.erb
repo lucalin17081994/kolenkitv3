@@ -55,6 +55,6 @@
 
     <%=@bestelling.created_at.in_time_zone("Amsterdam").strftime("%Y-%m-%d %H:%M")%>
   </div>
-  <%= link_to "PRINT", '', {id:"printbutton"}%>
+  <%= link_to "PRINT", '', {id:"printbutton", method:"get"}%>
 </div>
 
