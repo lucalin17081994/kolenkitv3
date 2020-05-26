@@ -139,12 +139,17 @@ body .card{
     visibility: hidden;
   }
   #section_to_print, #section_to_print * {
+    
     visibility: visible;
   }
+  #section_to_print, #section_to_print h1{
+    font-size:200%;
+  }
+  
   #section_to_print {
-    left: 0;
-    top: 0;
+    left: 10px;
     border:none;
+    
   }
 }
 

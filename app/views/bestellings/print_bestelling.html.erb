@@ -1,59 +1,36 @@
 
 <div class="container">
   <div class="card" id="section_to_print">
-  <img class="img-thumbnail" src="<%= asset_path("kolenkitlogo.jpg") %>" style="border:none;img:-webkit-filter: grayscale(100%);filter: grayscale(100%);s">
+  <h1><%=@bestelling.time.strftime("%H:%M")+" "+@bestelling.id.to_s%></h1>
+  <h5><%=@bestelling.created_at.in_time_zone("Amsterdam").strftime("%Y-%m-%d %H:%M")%></h5>
+  <hr style="border:1px dashed black">
   <%@bestelling.cart.product_sauces.each do |c|%>
     <%if c.product.category==Category.find_by(name:"patat")%>
-      <h2 class="card-body">
-        <div class="row">
-          <div class="col-md-6">
+      <h1 class="card-body">
             <%=c.quantity.to_s+" "+c.to_s%>
-          </div>
-          
-          <div class="col-md-6"style="text-align:right;">
-            <span>subtotaal: €<%=c.price%></span>
-          </div>
-        </div>
-      </h2>  
+      </h1>  
       <hr>
     <%end%> 
     <%if c.product.category!=Category.find_by(name:"patat")%>
-      <h2 class="card-body">
-        <div class="row">
-          <div class="col-md-6">
-            <%=c.quantity.to_s+" "+c.to_s%>
-          </div>
-          
-          <div class="col-md-6"style="text-align:right;">
-            <span>subtotaal: €<%=c.price%></span>
-          </div>
-        </div>
-      </h2>  
+      <h1 class="card-body">
+        <%=c.quantity.to_s+" "+c.to_s%>
+      </h1>  
     <%end%> 
   <%end%>
       <%if @bestelling.isBezorgd %>
         <h2 class="card-body"><div class="col-md-4 ml-auto">Bezorgkosten: €2</div></h2>
       <%end%>
-      <h2 class="card-body"><div style="text-align:right;">Totaalbedrag: €<span><%=@bestelling.total_price%></span></div></h2>
+      <hr style="border:1px dashed black">
+      <h1 class="card-body">Totaalbedrag: €<%=@bestelling.total_price%></h1>
       <p>
-      <h3 class="card-body ml-auto">
-        <%= @bestelling.address %></p>
-
-      <p>
-        <%= @bestelling.number %>
-      <p>
-        <% if @bestelling.time.strftime("%H:%M") == "00:00" %>
-          Zo snel mogelijk
-        <%else%>
-          <%=@bestelling.time.strftime("%H:%M")%>
-        <%end%>
-      </p>
-      
-    </h3>
+      <h1 class="card-body">
+        <%= @bestelling.address%> <br>
+        <%=@bestelling.number %>
+      </h1>
 
 
 
-    <%=@bestelling.created_at.in_time_zone("Amsterdam").strftime("%Y-%m-%d %H:%M")%>
+    
   </div>
   <%= link_to "PRINT", '', {id:"printbutton", method:"get"}%>
 </div>
