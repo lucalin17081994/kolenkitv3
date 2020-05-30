@@ -45,6 +45,16 @@ body{
     image: linear-gradient(to right, 	#696969	 , #708090		) !important;
     
   }
+  
+}
+body .container-fluid{
+  animation-name:img-ani;
+  animation-duration: 2s;   
+  animation-timing-function: ease-in;
+  @keyframes img-ani {
+    from{opacity:0.1;}
+    to{opacity: 1;}
+  }
 }
 body .navbar-brand:hover{
   border:1px solid black;
@@ -143,10 +153,11 @@ body .card{
     visibility: visible;
   }
   #section_to_print, #section_to_print h1{
-    font-size:200%;
+    font-size:250%;
   }
   
   #section_to_print {
+    top:0;
     left: 10px;
     border:none;
     

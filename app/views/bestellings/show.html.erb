@@ -12,14 +12,14 @@
           </div>
           
           <div class="col-md-6"style="text-align:right;">
-            <span>subtotaal: €<%=c.price%></span>
+            <span>subtotaal: €<%='%.2f' % c.price%></span>
           </div>
         </div>
       </h2>   
           
       <%end%>
       <%if @bestelling.isBezorgd %>
-        <h2 class="card-body"><div class="col-md-4 ml-auto">Bezorgkosten: €2</div></h2>
+        <h2 class="card-body"><div class="col-md-4 ml-auto">Bezorgkosten: €<%='%.2f' % 2%></div></h2>
       <%end%>
       <hr>
       <h2 class="card-body"><div style="text-align:right;">Totaalbedrag: €<span><%=@bestelling.total_price%></span></div></h2>

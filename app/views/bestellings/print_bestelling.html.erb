@@ -5,16 +5,19 @@
   <h5><%=@bestelling.created_at.in_time_zone("Amsterdam").strftime("%Y-%m-%d %H:%M")%></h5>
   <hr style="border:1px dashed black">
   <%@bestelling.cart.product_sauces.each do |c|%>
-    <%if c.product.category==Category.find_by(name:"patat")%>
+    <%if c.product.category.name=="patat" or c.product.category.name=="menus"%>
       <h1 class="card-body">
             <%=c.quantity.to_s+" "+c.to_s%>
       </h1>  
-      <hr>
+      
     <%end%> 
-    <%if c.product.category!=Category.find_by(name:"patat")%>
+  <%end%>
+  <hr style="border:1px dashed black">
+  <%@bestelling.cart.product_sauces.each do |c|%>
+    <%if c.product.category.name!="patat" and c.product.category.name!="menus"%>
       <h1 class="card-body">
         <%=c.quantity.to_s+" "+c.to_s%>
-      </h1>  
+     </h1>  
     <%end%> 
   <%end%>
       <%if @bestelling.isBezorgd %>

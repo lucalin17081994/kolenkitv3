@@ -105,6 +105,7 @@ $(function () {
 $(function(){
   $("#printbutton").click(function (){
     window.print();
+    window.print();
   })
 })
 

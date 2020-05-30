@@ -6,6 +6,8 @@
   <thead>
     <tr>
       <th>ProductSauceID</th>
+      <th>Brood ID<th>
+      <th>Brood<th>
       <th>ProductID</th>
       <th>Product</th>
       <th>SauceID</th>
@@ -21,6 +23,8 @@
     <% @product_sauces.each do |product_sauce| %>
       <tr>
         <td><%= product_sauce.id %></td>
+        <td><%= product_sauce.brood_id %></td>
+        <td><%= product_sauce.brood.name %></td>
         <td><%= product_sauce.product_id %></td>
         <td><%= product_sauce.product.name %></td>
         <td><%= product_sauce.sauce_id %></td>

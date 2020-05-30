@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_21_104707) do
+ActiveRecord::Schema.define(version: 2020_05_30_124252) do
 
   create_table "bestellings", force: :cascade do |t|
     t.integer "cart_id", null: false
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 2020_05_21_104707) do
     t.time "time"
     t.string "note"
     t.index ["cart_id"], name: "index_bestellings_on_cart_id"
+  end
+
+  create_table "broods", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 # Could not dump table "carts" because of following StandardError
@@ -61,6 +68,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_104707) do
     t.integer "cart_id"
     t.integer "quantity"
     t.string "flavor"
+    t.integer "brood_id"
     t.index ["product_id"], name: "index_product_sauces_on_product_id"
     t.index ["sauce_id"], name: "index_product_sauces_on_sauce_id"
   end
@@ -72,7 +80,6 @@ ActiveRecord::Schema.define(version: 2020_05_21_104707) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "description"
     t.integer "category_id"
-    t.string "abbreviation"
   end
 
   create_table "sauces", force: :cascade do |t|
@@ -80,7 +87,6 @@ ActiveRecord::Schema.define(version: 2020_05_21_104707) do
     t.decimal "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "abbreviation"
   end
 
   create_table "users", force: :cascade do |t|

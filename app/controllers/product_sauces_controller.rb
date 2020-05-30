@@ -17,6 +17,7 @@ class ProductSaucesController < ApplicationController
   def new
     @products=Product.all
     @sauces=Sauce.all
+    @broodjes=Brood.all
     @product_sauce = ProductSauce.new
   end
 
@@ -76,6 +77,8 @@ class ProductSaucesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_sauce_params
-      params.require(:product_sauce).permit(:product_id, :sauce_id, :quantity, :flavor)
+      params.require(:product_sauce).permit(:product_id, :brood_id, :sauce_id, :quantity, :flavor )
     end
+
+    
 end

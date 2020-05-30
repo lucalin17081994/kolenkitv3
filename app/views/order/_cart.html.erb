@@ -19,6 +19,7 @@
               <%= form.hidden_field :sauce_id , value:c.sauce.id%>
               <%= form.hidden_field :quantity , value:c.quantity%>
               <%= form.hidden_field :flavor , value:c.flavor%>
+              <%= form.hidden_field :brood_id , value:c.brood.id%>
               <%= button_to root_path, {method: :patch, class:"btn btn-light"} do%>
                 <%= octicon "dash" %>
               <%end%>
@@ -32,6 +33,7 @@
                 <%= form.hidden_field :sauce_id , value:c.sauce.id%>
                 <%= form.hidden_field :quantity , value:1%>
                 <%= form.hidden_field :flavor , value:c.flavor%>
+                <%= form.hidden_field :brood_id , value:c.brood.id%>
                 <%= button_to root_path,  {method: :post, class:"btn btn-light"} do%>
                   <%= octicon "plus" %>
               <%end%>
@@ -44,6 +46,7 @@
                 <%= form.hidden_field :product_id , value:c.product.id%>
                 <%= form.hidden_field :sauce_id , value:c.sauce.id%>
                 <%= form.hidden_field :quantity , value:1%>
+                <%= form.hidden_field :brood_id , value:c.brood.id%>
                 <%= button_to root_path, {method: :delete,class:"btn btn-danger"}  do%>
                   <%= octicon "trashcan" %>
                 <%end%>

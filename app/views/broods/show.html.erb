@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @brood.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @brood.price %>
+</p>
+
+<%= link_to 'Edit', edit_brood_path(@brood) %> |
+<%= link_to 'Back', broods_path %>
